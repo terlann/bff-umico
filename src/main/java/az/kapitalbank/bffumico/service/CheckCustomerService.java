@@ -11,11 +11,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class CheckCustomerService {
 
-
-    final OrderMarketplaceClient orderMarketplaceClient;
+    OrderMarketplaceClient orderMarketplaceClient;
 
     public ResponseEntity<?> checkPinCode(String pinCode) {
         return ResponseEntity.ok(orderMarketplaceClient.checkPinCode(pinCode));
