@@ -1,5 +1,4 @@
-package az.kapitalbank.bffumico.client.order_marketplace;
-
+package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;

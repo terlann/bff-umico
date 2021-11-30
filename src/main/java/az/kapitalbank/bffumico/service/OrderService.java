@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.service;
 
-import az.kapitalbank.bffumico.client.order_marketplace.OrderMarketplaceClient;
+import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
