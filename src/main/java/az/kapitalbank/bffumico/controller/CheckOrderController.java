@@ -20,7 +20,7 @@ public class CheckOrderController {
 
     @PostMapping
     public ResponseEntity<?> checkOrder(@RequestParam("eteOrderId") String eteOrderId) {
-        return service.checkOrder(eteOrderId);
+        return ResponseEntity.ok(service.checkOrder(eteOrderId));
     }
 
 }

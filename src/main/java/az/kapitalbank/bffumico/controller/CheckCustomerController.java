@@ -20,7 +20,7 @@ public class CheckCustomerController {
 
     @GetMapping("/{pinCode}/customer")
     public ResponseEntity<?> checkPinCode(@PathVariable("pinCode") String pinCode) {
-        return service.checkPinCode(pinCode);
+        return ResponseEntity.ok(service.checkPinCode(pinCode));
     }
 
 }

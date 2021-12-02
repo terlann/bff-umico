@@ -21,6 +21,6 @@ public class ScoringController {
 
     @PostMapping
     public ResponseEntity<?> scoringOrder(@RequestBody ScoringOrderRequestDto request) {
-        return service.scoringOrder(request);
+        return ResponseEntity.ok(service.scoringOrder(request));
     }
 }

@@ -23,11 +23,11 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequestDto request) {
-        return service.createOrder(request);
+        return ResponseEntity.ok(service.createOrder(request));
     }
 
     @DeleteMapping
     public ResponseEntity<?> deleteOrder(@RequestParam String trackId) {
-        return service.deleteOrder(trackId);
+        return ResponseEntity.ok(service.deleteOrder(trackId));
     }
 }

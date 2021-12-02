@@ -2,11 +2,11 @@ package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -17,9 +17,7 @@ public class DeliveryService {
 
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public ResponseEntity<?> deliveryProducts(DeliveryProductRequestDto request) {
-        return ResponseEntity.ok(orderMarketplaceClient.deliveryProducts(request));
+    public WrapperResponseDto<?> deliveryProducts(DeliveryProductRequestDto request) {
+        return orderMarketplaceClient.deliveryProducts(request);
     }
-
-
 }

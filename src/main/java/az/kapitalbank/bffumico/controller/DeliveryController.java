@@ -21,6 +21,6 @@ public class DeliveryController {
 
     @PostMapping
     public ResponseEntity<?> deliveryProducts(@RequestBody DeliveryProductRequestDto request) {
-        return service.deliveryProducts(request);
+        return ResponseEntity.ok(service.deliveryProducts(request));
     }
 }
