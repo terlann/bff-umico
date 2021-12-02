@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'checkstyle'
     id 'org.springframework.boot' version "$springBootPluginVersion"
     id 'io.spring.dependency-management' version "$springDependencyVersion"
 }
@@ -54,4 +55,17 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion = "${checkstyleVersion}"
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
 }
