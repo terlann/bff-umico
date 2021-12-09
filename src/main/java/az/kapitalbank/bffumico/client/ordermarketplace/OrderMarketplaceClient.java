@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
+import az.kapitalbank.bffumico.client.ordermarketplace.model.CreateOrderRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
@@ -30,7 +31,7 @@ public interface OrderMarketplaceClient {
     WrapperResponseDto<?> deliveryProducts(@RequestBody DeliveryProductRequestDto request);
 
     @PostMapping("v2/marketplace/order")
-    WrapperResponseDto<?> createOrder(@RequestBody CreateOrderRequestDto request);
+    WrapperResponseDto<?> createOrder(@RequestBody CreateOrderRequest request);
 
     @DeleteMapping("v2/marketplace/order")
     WrapperResponseDto<?> deleteOrder(@RequestParam String trackId);
