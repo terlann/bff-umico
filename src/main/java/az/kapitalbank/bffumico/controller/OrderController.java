@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2/marketplace/order")
+@RequestMapping("/api/v1/marketplace/order")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class OrderController {
 
