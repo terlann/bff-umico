@@ -10,19 +10,24 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOrderRequestDto {
-    String fullName;
+    @NotEmpty
+    String fullname;
+    @NotEmpty
     String phoneNumber;
-    String pinCode;
+    @NotEmpty
+    String pincode;
     String cardPan;
     String workPlace;
     String email;
-    LocalDate birthday;
     Boolean isKbCustomer;
     Boolean isAgreement;
     Integer loanTerm;
+    LocalDate birthday;
     BigDecimal totalAmount;
     String umicoUserId;
     String userIp;
@@ -30,6 +35,10 @@ public class CreateOrderRequestDto {
     String userAgent;
     String originationLat;
     String originationLan;
+    @NotEmpty
+    String additionalPhoneNumber1;
+    @NotEmpty
+    String additionalPhoneNumber2;
     LocalDate umicoRegistrationDate;
     List<OrderProductDeliveryInfo> deliveryInfo;
     List<OrderProductItem> products;

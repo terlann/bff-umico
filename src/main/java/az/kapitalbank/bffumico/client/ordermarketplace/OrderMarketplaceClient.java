@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
+import az.kapitalbank.bffumico.client.ordermarketplace.model.CreateOrderRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
@@ -23,22 +24,22 @@ import org.springframework.web.bind.annotation.RequestParam;
         configuration = OrderMarketplaceClient.FeignConfiguration.class)
 public interface OrderMarketplaceClient {
 
-    @GetMapping("v1/marketplace/order/check")
+    @GetMapping("/v1/marketplace/order/check")
     WrapperResponseDto<?> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
 
-    @PostMapping("v1/marketplace/delivery")
+    @PostMapping("/v1/marketplace/delivery")
     WrapperResponseDto<?> deliveryProducts(@RequestBody DeliveryProductRequestDto request);
 
-    @PostMapping("v2/marketplace/order")
-    WrapperResponseDto<?> createOrder(@RequestBody CreateOrderRequestDto request);
+    @PostMapping("/v1/marketplace/order")
+    WrapperResponseDto<?> createOrder(@RequestBody CreateOrderRequest request);
 
-    @DeleteMapping("v2/marketplace/order")
+    @DeleteMapping("/v1/marketplace/order")
     WrapperResponseDto<?> deleteOrder(@RequestParam String trackId);
 
-    @PostMapping("v1/marketplace/scoring")
+    @PostMapping("/v1/marketplace/scoring")
     WrapperResponseDto<?> scoringOrder(@RequestBody ScoringOrderRequestDto request);
 
-    @GetMapping("v1/marketplace/check/{pinCode}/customer")
+    @GetMapping("/v1/marketplace/check/{pinCode}/customer")
     WrapperResponseDto<?> checkPinCode(@PathVariable String pinCode);
 
 
