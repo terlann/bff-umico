@@ -1,7 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.CreateOrderRequest;
-import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
 import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;

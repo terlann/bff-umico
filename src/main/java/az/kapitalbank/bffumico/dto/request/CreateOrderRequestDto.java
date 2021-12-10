@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.dto.request;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -9,8 +10,6 @@ import az.kapitalbank.bffumico.dto.OrderProductItem;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-
-import javax.validation.constraints.NotEmpty;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
