@@ -35,9 +35,9 @@ https://semver.org/
 <img src="https://bitbucket.kapitalbank.az/superman-images/say-devops.png" width="140">  ***If something goes wrong, just text to me via Slack's `devops-team` channel.I'll assist you*** :fire:
 
 ## :question: ***How to Check App?***
-- :globe_with_meridians: Development URL: https://dev.bff-umico.kapitalbank.az
-- :globe_with_meridians: Preproduction URL: https://pre.bff-umico.kapitalbank.az
-- :globe_with_meridians: Production URL: https://bff-umico.kapitalbank.az
+- :globe_with_meridians: Development URL: https://dev.bff-umico-marketplace.kapitalbank.az
+- :globe_with_meridians: Preproduction URL: https://pre.bff-umico-marketplace.kapitalbank.az
+- :globe_with_meridians: Production URL: https://bff-umico-marketplace.kapitalbank.az
 ## :question: ***How to Check Builds?***
 - :sparkles: Jenkins URL: https://jenkins.kapitalbank.az/job/marketplace/job/bff-umico
 <img src="https://bitbucket.kapitalbank.az/superman-images/batman.gif" width="500">
