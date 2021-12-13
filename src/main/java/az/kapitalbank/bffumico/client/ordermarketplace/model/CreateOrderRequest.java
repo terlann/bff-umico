@@ -1,5 +1,10 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.List;
+
 import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
 import az.kapitalbank.bffumico.dto.OrderProductItem;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -10,11 +15,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @Builder
