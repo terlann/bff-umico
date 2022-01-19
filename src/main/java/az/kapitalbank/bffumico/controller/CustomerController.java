@@ -1,7 +1,7 @@
 package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
-import az.kapitalbank.bffumico.service.CheckCustomerService;
+import az.kapitalbank.bffumico.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/marketplace")
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/marketplace/check")
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class CheckCustomerController {
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class CustomerController {
 
-    CheckCustomerService service;
+    CustomerService customerService;
 
-    @GetMapping("/{pinCode}/customer")
-    public ResponseEntity<WrapperResponseDto<Object>> checkPinCode(@PathVariable("pinCode") String pinCode) {
-        return ResponseEntity.ok(service.checkPinCode(pinCode));
+    @GetMapping("/customers/{customerId}/balance")
+    public ResponseEntity<WrapperResponseDto<Object>> getCustomerBalance(@PathVariable String customerId) {
+        return ResponseEntity.ok(customerService.getCustomerBalance(customerId));
     }
 
 }

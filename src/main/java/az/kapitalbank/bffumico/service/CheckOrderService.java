@@ -16,7 +16,7 @@ public class CheckOrderService {
 
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public WrapperResponseDto<?> checkOrder(String eteId) {
+    public WrapperResponseDto<Object> checkOrder(String eteId) {
         return orderMarketplaceClient.checkOrder(eteId);
     }
 }

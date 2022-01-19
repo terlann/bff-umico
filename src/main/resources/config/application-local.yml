@@ -1,0 +1,5 @@
+client:
+  order-marketplace:
+    url: localhost:8089
+  marketplace:
+    url: localhost:8090
