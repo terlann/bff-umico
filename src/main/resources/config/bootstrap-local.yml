@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: adp-atlas
+  cloud:
+    consul:
+      enabled: false
+

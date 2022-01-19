@@ -16,7 +16,7 @@ public class CheckCustomerService {
 
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public WrapperResponseDto<?> checkPinCode(String pinCode) {
+    public WrapperResponseDto<Object> checkPinCode(String pinCode) {
         return orderMarketplaceClient.checkPinCode(pinCode);
     }
 }

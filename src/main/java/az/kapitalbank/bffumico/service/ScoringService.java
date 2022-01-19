@@ -17,7 +17,7 @@ public class ScoringService {
 
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public WrapperResponseDto<?> scoringOrder(ScoringOrderRequestDto request) {
+    public WrapperResponseDto<Object> scoringOrder(ScoringOrderRequestDto request) {
         return orderMarketplaceClient.scoringOrder(request);
     }
 }

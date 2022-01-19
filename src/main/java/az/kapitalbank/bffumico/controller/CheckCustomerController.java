@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.CheckCustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class CheckCustomerController {
     CheckCustomerService service;
 
     @GetMapping("/{pinCode}/customer")
-    public ResponseEntity<?> checkPinCode(@PathVariable("pinCode") String pinCode) {
+    public ResponseEntity<WrapperResponseDto<Object>> checkPinCode(@PathVariable("pinCode") String pinCode) {
         return ResponseEntity.ok(service.checkPinCode(pinCode));
     }
 

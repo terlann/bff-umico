@@ -17,15 +17,15 @@ public class WrapperResponseDto<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     T data;
 
-    public static WrapperResponseDto<?> of(String code, String message) {
-        WrapperResponseDto<?> wrapperResponseDto = new WrapperResponseDto<>();
+    public static WrapperResponseDto<Object> of(String code, String message) {
+        WrapperResponseDto<Object> wrapperResponseDto = new WrapperResponseDto<>();
         wrapperResponseDto.setCode(code);
         wrapperResponseDto.setMessage(message);
         return wrapperResponseDto;
     }
 
-    public static WrapperResponseDto<?> ofSuccess() {
-        WrapperResponseDto<?> wrapperResponseDto = new WrapperResponseDto<>();
+    public static WrapperResponseDto<Object> ofSuccess() {
+        WrapperResponseDto<Object> wrapperResponseDto = new WrapperResponseDto<>();
         wrapperResponseDto.setCode("200");
         wrapperResponseDto.setMessage("SUCCESS");
         return wrapperResponseDto;

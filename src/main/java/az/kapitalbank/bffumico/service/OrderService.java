@@ -20,12 +20,12 @@ public class OrderService {
     OrderMarketplaceClient orderMarketplaceClient;
     CreateOrderMapper createOrderMapper;
 
-    public WrapperResponseDto<?> createOrder(CreateOrderRequestDto request) {
+    public WrapperResponseDto<Object> createOrder(CreateOrderRequestDto request) {
         CreateOrderRequest createOrderRequest = createOrderMapper.toCreateOrderRequest(request);
         return orderMarketplaceClient.createOrder(createOrderRequest);
     }
 
-    public WrapperResponseDto<?> deleteOrder(String trackId) {
+    public WrapperResponseDto<Object> deleteOrder(String trackId) {
         return orderMarketplaceClient.deleteOrder(trackId);
     }
 }

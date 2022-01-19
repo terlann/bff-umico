@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.CheckOrderService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class CheckOrderController {
     CheckOrderService service;
 
     @PostMapping
-    public ResponseEntity<?> checkOrder(@RequestParam("eteOrderId") String eteOrderId) {
+    public ResponseEntity<WrapperResponseDto<Object>> checkOrder(@RequestParam("eteOrderId") String eteOrderId) {
         return ResponseEntity.ok(service.checkOrder(eteOrderId));
     }
 

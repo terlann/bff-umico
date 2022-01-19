@@ -1,6 +1,7 @@
 package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.DeliveryService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class DeliveryController {
     DeliveryService service;
 
     @PostMapping
-    public ResponseEntity<?> deliveryProducts(@RequestBody DeliveryProductRequestDto request) {
+    public ResponseEntity<WrapperResponseDto<Object>> deliveryProducts(@RequestBody DeliveryProductRequestDto request) {
         return ResponseEntity.ok(service.deliveryProducts(request));
     }
 }

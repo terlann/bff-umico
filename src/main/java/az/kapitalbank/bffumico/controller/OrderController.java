@@ -1,6 +1,7 @@
 package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,12 @@ public class OrderController {
     OrderService service;
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequestDto request) {
+    public ResponseEntity<WrapperResponseDto<Object>> createOrder(@RequestBody CreateOrderRequestDto request) {
         return ResponseEntity.ok(service.createOrder(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteOrder(@RequestParam String trackId) {
+    public ResponseEntity<WrapperResponseDto<Object>> deleteOrder(@RequestParam String trackId) {
         return ResponseEntity.ok(service.deleteOrder(trackId));
     }
 }

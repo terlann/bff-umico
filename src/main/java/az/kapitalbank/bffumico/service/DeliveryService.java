@@ -17,7 +17,7 @@ public class DeliveryService {
 
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public WrapperResponseDto<?> deliveryProducts(DeliveryProductRequestDto request) {
+    public WrapperResponseDto<Object> deliveryProducts(DeliveryProductRequestDto request) {
         return orderMarketplaceClient.deliveryProducts(request);
     }
 }
