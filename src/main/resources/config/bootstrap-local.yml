@@ -1,6 +1,6 @@
 spring:
   application:
-    name: adp-atlas
+    name: bff-umico
   cloud:
     consul:
       enabled: false
