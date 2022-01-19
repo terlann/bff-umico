@@ -5,6 +5,7 @@ import az.kapitalbank.bffumico.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,8 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("/customers/{customerId}/balance")
-    public BalanceResponseDto getCustomerBalance(@PathVariable String customerId) {
-        return customerService.getCustomerBalance(customerId);
+    public ResponseEntity<BalanceResponseDto> getCustomerBalance(@PathVariable String customerId) {
+        return ResponseEntity.ok(customerService.getCustomerBalance(customerId));
     }
 
 }
