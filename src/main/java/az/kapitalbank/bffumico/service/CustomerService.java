@@ -1,7 +1,7 @@
 package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.CustomerCardClient;
-import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,9 +15,11 @@ public class CustomerService {
     CustomerMapper customerMapper;
     CustomerCardClient customerCardClient;
 
-    public BalanceResponseDto getCustomerBalance(String customerId) {
+    public WrapperResponseDto<Object> getCustomerBalance(String customerId) {
         var balanceResponse = customerCardClient.getCustomerBalance(customerId);
-        return customerMapper.toBalanceResponseDto(balanceResponse);
+        var wrapper = WrapperResponseDto.ofSuccess();
+        wrapper.setData(customerMapper.toBalanceResponseDto(balanceResponse.getData()));
+        return wrapper;
     }
 
 }

@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
-import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
+import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("/customers/{customerId}/balance")
-    public ResponseEntity<BalanceResponseDto> getCustomerBalance(@PathVariable String customerId) {
+    public ResponseEntity<WrapperResponseDto<Object>> getCustomerBalance(@PathVariable String customerId) {
         return ResponseEntity.ok(customerService.getCustomerBalance(customerId));
     }
 
