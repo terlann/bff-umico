@@ -24,4 +24,5 @@ public class ScoringController {
     public ResponseEntity<WrapperResponseDto<Object>> scoringOrder(@RequestBody ScoringOrderRequestDto request) {
         return ResponseEntity.ok(service.scoringOrder(request));
     }
+
 }

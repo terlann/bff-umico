@@ -41,7 +41,6 @@ public interface OrderMarketplaceClient {
     @GetMapping("/v1/marketplace/check/{pinCode}/customer")
     WrapperResponseDto<Object> checkPinCode(@PathVariable String pinCode);
 
-
     class FeignConfiguration {
         @Bean
         Logger.Level loggerLevel() {

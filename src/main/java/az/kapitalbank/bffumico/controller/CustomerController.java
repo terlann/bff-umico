@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/marketplace")
+@RequestMapping("/api/marketplace")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomerController {
@@ -22,6 +22,5 @@ public class CustomerController {
     public BalanceResponseDto getCustomerBalance(@PathVariable String customerId) {
         return customerService.getCustomerBalance(customerId);
     }
-
 
 }

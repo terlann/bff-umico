@@ -4,4 +4,3 @@ spring:
   cloud:
     consul:
       enabled: false
-
