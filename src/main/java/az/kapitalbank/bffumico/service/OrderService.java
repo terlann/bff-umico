@@ -8,6 +8,7 @@ import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -32,7 +33,7 @@ public class OrderService {
         return ResponseEntity.ok(createOrderResponseDto);
     }
 
-    public ResponseEntity<Void> deleteOrder(String trackId) {
+    public ResponseEntity<Void> deleteOrder(UUID trackId) {
         return orderMarketplaceClient.deleteOrder(trackId);
     }
 

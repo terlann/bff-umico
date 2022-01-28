@@ -3,6 +3,7 @@ package az.kapitalbank.bffumico.dto.response;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 public class CheckOrderResponseDto {
 
     String eteOrderId;
-    String trackId;
+    UUID trackId;
     BigDecimal totalAmount;
 
 }

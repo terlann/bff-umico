@@ -6,6 +6,7 @@ import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -36,7 +37,7 @@ public class OrderController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteOrder(@RequestParam String trackId) {
+    public ResponseEntity<Void> deleteOrder(@RequestParam UUID trackId) {
         return service.deleteOrder(trackId);
     }
 

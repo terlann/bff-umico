@@ -10,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 public class CreateOrderResponse {
 
     String eteOrderId;
-    UUID marketplaceTrackId;
+    UUID trackId;
 
 }

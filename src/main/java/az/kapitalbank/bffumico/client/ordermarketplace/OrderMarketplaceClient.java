@@ -10,6 +10,7 @@ import feign.Logger;
 import feign.codec.ErrorDecoder;
 import feign.error.AnnotationErrorDecoder;
 import feign.jackson.JacksonDecoder;
+import java.util.UUID;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public interface OrderMarketplaceClient {
     ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request);
 
     @DeleteMapping("/orders/{trackId}")
-    ResponseEntity<Void> deleteOrder(@PathVariable String trackId);
+    ResponseEntity<Void> deleteOrder(@PathVariable UUID trackId);
 
     @PostMapping("/orders/purchase")
     ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request);

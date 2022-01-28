@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -8,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ReverseRequest {
     String umicoUserId;
-    String customerId;
+    UUID customerId;
     String orderNo;
     String orderAmount;
 }

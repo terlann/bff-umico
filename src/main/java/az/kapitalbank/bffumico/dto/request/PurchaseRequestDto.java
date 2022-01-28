@@ -18,7 +18,7 @@ public class PurchaseRequestDto {
 
     String umicoUserId;
     UUID trackId;
-    String customerId;
+    UUID customerId;
 
     @NotNull
     List<@Valid DeliveryProductDto> deliveryOrders;

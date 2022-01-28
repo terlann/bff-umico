@@ -11,10 +11,10 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PurchaseRequestDto {
+public class PurchaseRequest {
     String umicoUserId;
     UUID trackId;
-    String customerId;
+    UUID customerId;
 
     @NotNull
     List<@Valid DeliveryProductDto> deliveryOrders;
