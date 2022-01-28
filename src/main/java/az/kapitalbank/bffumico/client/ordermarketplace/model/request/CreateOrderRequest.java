@@ -5,8 +5,6 @@ import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
 import az.kapitalbank.bffumico.dto.OrderProductItem;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +19,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOrderRequest {
     CustomerInfoDto customerInfo;
-    @NotNull
     Integer loanTerm;
-    @NotNull
     BigDecimal totalAmount;
     List<OrderProductDeliveryInfo> deliveryInfo;
-    List<@Valid OrderProductItem> products;
+    List<OrderProductItem> products;
 }
