@@ -1,11 +1,12 @@
-package az.kapitalbank.bffumico.client.ordermarketplace.model;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+package az.kapitalbank.bffumico.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.time.LocalDate;
+import java.util.UUID;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,23 +20,31 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CustomerInfo {
+public class CustomerInfoDto {
+    String umicoUserId;
+    UUID customerId;
+    LocalDate registrationDate;
     @NotEmpty
-    String fullname;
+    String fullName;
     @NotEmpty
     @Pattern(regexp = "^\\+994[0-9]{9}$")
-    String phoneNumber;
+    String mobileNumber;
     @NotEmpty
     @Pattern(regexp = "\\w{7}")
-    String pincode;
+    String pin;
     @NotEmpty
     @Pattern(regexp = "^(.+)@(.+)$")
     String email;
     @NotNull
-    boolean isAgreement;
+    Boolean isAgreement;
     String workPlace;
+    LocalDate birthday;
     @NotEmpty
     String additionalPhoneNumber1;
     @NotEmpty
     String additionalPhoneNumber2;
+    String latitude;
+    String longitude;
+    String ip;
+    String userAgent;
 }

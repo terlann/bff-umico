@@ -1,23 +1,17 @@
-package az.kapitalbank.bffumico.dto.response;
+package az.kapitalbank.bffumico.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.math.BigDecimal;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CheckOrderResponseDto {
-
-    String eteOrderId;
-    String trackId;
-    BigDecimal totalAmount;
-
+public class ReverseRequestDto {
+    String umicoUserId;
+    String customerId;
+    String orderNo;
+    String orderAmount;
 }

@@ -1,23 +1,28 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.BalanceResponse;
-import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceResponse;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
 import feign.error.AnnotationErrorDecoder;
 import feign.jackson.JacksonDecoder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "marketplace",
-        url = "${client.marketplace.url}",
+        url = "${client.marketplace.url}/api/v1",
         primary = false,
         configuration = CustomerCardClient.FeignConfiguration.class)
 public interface CustomerCardClient {
 
-    @GetMapping("/customers/{customerId}/balance")
-    WrapperResponseDto<BalanceResponse> getCustomerBalance(String customerId);
+    @GetMapping("/customers/balance")
+    BalanceResponse getCustomerBalance(@RequestParam String umicoUserId, @RequestParam String customerId);
+
+    @GetMapping("/customers/{pin}")
+    ResponseEntity<Void> checkPin(@PathVariable String pin);
 
     class FeignConfiguration {
         @Bean

@@ -1,9 +1,8 @@
-package az.kapitalbank.bffumico.client.ordermarketplace.model;
-
-import java.time.LocalDate;
+package az.kapitalbank.bffumico.dto.response;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -11,12 +10,9 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CustomerDetail {
-    String umicoUserId;
-    String userIp;
-    String umicoRegistrationPhone;
-    String userAgent;
-    String originationLat;
-    String originationLan;
-    LocalDate umicoRegistrationDate;
+public class CreateOrderResponseDto {
+
+    String eteOrderId;
+    UUID trackId;
+
 }

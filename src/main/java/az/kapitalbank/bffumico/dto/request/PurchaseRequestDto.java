@@ -1,12 +1,10 @@
 package az.kapitalbank.bffumico.dto.request;
 
-import az.kapitalbank.bffumico.dto.CustomerInfoDto;
-import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
-import az.kapitalbank.bffumico.dto.OrderProductItem;
+import az.kapitalbank.bffumico.dto.DeliveryProductDto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -16,14 +14,13 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CreateOrderRequestDto {
+public class PurchaseRequestDto {
 
-    CustomerInfoDto customerInfo;
+    String umicoUserId;
+    UUID trackId;
+    String customerId;
+
     @NotNull
-    Integer loanTerm;
-    @NotNull
-    BigDecimal totalAmount;
-    List<OrderProductDeliveryInfo> deliveryInfo;
-    List<@Valid OrderProductItem> products;
+    List<@Valid DeliveryProductDto> deliveryOrders;
 
 }

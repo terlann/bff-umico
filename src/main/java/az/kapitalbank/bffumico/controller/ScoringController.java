@@ -1,7 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
-import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import az.kapitalbank.bffumico.service.ScoringService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +20,8 @@ public class ScoringController {
     ScoringService service;
 
     @PostMapping
-    public ResponseEntity<WrapperResponseDto<Object>> scoringOrder(@RequestBody ScoringOrderRequestDto request) {
-        return ResponseEntity.ok(service.scoringOrder(request));
+    public ResponseEntity<Void> scoreOrder(@RequestBody ScoringOrderRequestDto request) {
+        return service.scoringOrder(request);
     }
 
 }

@@ -1,7 +1,5 @@
-package az.kapitalbank.bffumico.dto.response;
+package az.kapitalbank.bffumico.client.ordermarketplace.model.response;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,8 +11,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CheckOrderResponseDto {
+public class CheckOrderResponse {
 
     String eteOrderId;
     String trackId;

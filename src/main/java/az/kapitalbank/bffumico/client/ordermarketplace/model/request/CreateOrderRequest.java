@@ -1,14 +1,12 @@
-package az.kapitalbank.bffumico.client.ordermarketplace.model;
+package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.List;
-
+import az.kapitalbank.bffumico.dto.CustomerInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
 import az.kapitalbank.bffumico.dto.OrderProductItem;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +19,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CreateOrderRequest {
-    CustomerInfo customerInfo;
-    CustomerDetail customerDetail;
+    CustomerInfoDto customerInfo;
     @NotNull
     Integer loanTerm;
     @NotNull
