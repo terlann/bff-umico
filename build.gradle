@@ -3,6 +3,8 @@ plugins {
     id 'checkstyle'
     id 'org.springframework.boot' version "$springBootPluginVersion"
     id 'io.spring.dependency-management' version "$springDependencyVersion"
+    id 'jacoco'
+    id 'org.sonarqube' version "$sonarQubeVersion"
 }
 
 group = 'az.kapitalbank.bff-umico'
@@ -68,4 +70,30 @@ checkstyleMain {
 
 checkstyleTest {
     source = 'src/test/java'
+}
+
+sonarqube {
+    properties {
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPath", "build/jacoco/test.exec"
+        property "sonar.junit.reportsPath", "build/test-results/test"
+        property "sonar.projectKey", rootProject.name
+        property "sonar.host.url", "https://sonarqube.kapitalbank.az"
+        property "sonar.scm.forceReloadAll", "true"
+        property "sonar.java.checkstyle.reportPaths", "build/reports/checkstyle/main.xml"
+        property "sonar.coverage.exclusions", "**/az/kapitalbank/adpatlas/**"
+        property "sonar.cpd.exclusions", "**/az/kapitalbank/adpatlas/**"
+    }
+}
+
+jacoco {
+    toolVersion = "$jacocoToolVersion"
+    reportsDir = file("build/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
 }
