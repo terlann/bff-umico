@@ -22,8 +22,8 @@ public class CustomerController {
 
     @GetMapping("/balance")
     public ResponseEntity<BalanceResponseDto> getCustomerBalance(@RequestParam("umico_user_id") String umicoUserId,
-            @RequestParam("customer_id") String customerId) {
-        return customerService.getCustomerBalance(umicoUserId,customerId);
+                                                                 @RequestParam("customer_id") String customerId) {
+        return customerService.getCustomerBalance(umicoUserId, customerId);
     }
 
     @GetMapping("/{pin_code}")

@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface CustomerCardClient {
 
     @GetMapping("/customers/balance")
-    ResponseEntity<BalanceResponse> getCustomerBalance(@RequestParam String umicoUserId, @RequestParam String customerId);
+    ResponseEntity<BalanceResponse> getCustomerBalance(@RequestParam String umicoUserId,
+                                                       @RequestParam String customerId);
 
     @GetMapping("/customers/{pin}")
     ResponseEntity<Void> checkPin(@PathVariable String pin);

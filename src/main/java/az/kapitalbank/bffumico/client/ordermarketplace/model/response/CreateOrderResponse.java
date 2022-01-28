@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.response;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -9,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 public class CreateOrderResponse {
 
     String eteOrderId;
-    String marketplaceTrackId;
+    UUID marketplaceTrackId;
 
 }

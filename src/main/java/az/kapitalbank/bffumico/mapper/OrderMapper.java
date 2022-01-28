@@ -9,6 +9,7 @@ import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
@@ -30,6 +31,7 @@ public interface OrderMapper {
 //    @Mapping(source = "umicoRegistrationDate", target = "customerDetail.umicoRegistrationDate")
     CreateOrderRequest toCreateOrderRequest(CreateOrderRequestDto createOrderRequestDto);
 
+    @Mapping(target = "trackId", source = "marketplaceTrackId")
     CreateOrderResponseDto toCreateOrderResponseDto(CreateOrderResponse body);
 
     CheckOrderResponseDto toCheckOrderResponseDto(CheckOrderResponse checkOrderResponse);
