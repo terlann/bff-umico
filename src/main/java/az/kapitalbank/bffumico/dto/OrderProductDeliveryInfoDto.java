@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class OrderProductDeliveryInfo {
+public class OrderProductDeliveryInfoDto {
     String orderNo;
     String deliveryMethod;
     String deliveryAddress;

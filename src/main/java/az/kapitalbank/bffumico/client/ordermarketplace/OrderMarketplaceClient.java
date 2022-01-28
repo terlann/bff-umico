@@ -1,11 +1,11 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
-import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
 import feign.error.AnnotationErrorDecoder;
@@ -33,7 +33,7 @@ public interface OrderMarketplaceClient {
     ResponseEntity<Void> deleteOrder(@PathVariable UUID trackId);
 
     @PostMapping("/orders/purchase")
-    ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request);
+    ResponseEntity<Void> purchase(@RequestBody PurchaseRequest request);
 
     @PostMapping("/orders/reverse")
     ResponseEntity<Void> reverseOrder(@RequestBody ReverseRequest request);
@@ -42,7 +42,7 @@ public interface OrderMarketplaceClient {
     ResponseEntity<CheckOrderResponse> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
 
     @PostMapping("/scoring")
-    ResponseEntity<Void> scoringOrder(@RequestBody ScoringOrderRequestDto request);
+    ResponseEntity<Void> scoringOrder(@RequestBody ScoringOrderRequest request);
 
     class FeignConfiguration {
         @Bean
