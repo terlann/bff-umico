@@ -1,8 +1,12 @@
 package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
-import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
+import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
+import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
+import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
+import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,20 +20,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/marketplace/order")
+@RequestMapping("/api/v1/orders")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class OrderController {
 
     OrderService service;
 
     @PostMapping
-    public ResponseEntity<WrapperResponseDto<Object>> createOrder(@RequestBody CreateOrderRequestDto request) {
-        return ResponseEntity.ok(service.createOrder(request));
+    public ResponseEntity<CreateOrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto request) {
+        return service.createOrder(request);
+    }
+
+    @PostMapping("/reverse")
+    public ResponseEntity<Void> reverseOrder(@RequestBody ReverseRequestDto request) {
+        return service.reverseOrder(request);
     }
 
     @DeleteMapping
-    public ResponseEntity<WrapperResponseDto<Object>> deleteOrder(@RequestParam String trackId) {
-        return ResponseEntity.ok(service.deleteOrder(trackId));
+    public ResponseEntity<Void> deleteOrder(@RequestParam UUID trackId) {
+        return service.deleteOrder(trackId);
+    }
+
+    @PostMapping("/check")
+    public ResponseEntity<CheckOrderResponseDto> checkOrder(@RequestParam("eteOrderId") String eteOrderId) {
+        return service.checkOrder(eteOrderId);
+    }
+
+    @PostMapping("/purchase")
+    public ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request) {
+        return service.purchase(request);
     }
 
 }

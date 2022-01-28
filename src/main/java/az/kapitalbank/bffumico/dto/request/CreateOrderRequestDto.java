@@ -1,44 +1,29 @@
 package az.kapitalbank.bffumico.dto.request;
 
-import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
-
+import az.kapitalbank.bffumico.dto.CustomerInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
 import az.kapitalbank.bffumico.dto.OrderProductItem;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CreateOrderRequestDto {
-    @NotEmpty
-    String fullname;
-    @NotEmpty
-    String phoneNumber;
-    @NotEmpty
-    String pincode;
-    String cardPan;
-    String workPlace;
-    String email;
-    Boolean isKbCustomer;
-    Boolean isAgreement;
+
+    CustomerInfoDto customerInfo;
+    @NotNull
     Integer loanTerm;
-    LocalDate birthday;
+    @NotNull
     BigDecimal totalAmount;
-    String umicoUserId;
-    String userIp;
-    String umicoRegistrationPhone;
-    String userAgent;
-    String originationLat;
-    String originationLan;
-    @NotEmpty
-    String additionalPhoneNumber1;
-    @NotEmpty
-    String additionalPhoneNumber2;
-    LocalDate umicoRegistrationDate;
     List<OrderProductDeliveryInfo> deliveryInfo;
-    List<OrderProductItem> products;
+    List<@Valid OrderProductItem> products;
+
 }

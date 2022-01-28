@@ -2,9 +2,10 @@ package az.kapitalbank.bffumico.constant;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public enum OrderScoringStatus {
@@ -12,8 +13,4 @@ public enum OrderScoringStatus {
     REJECTED(0);
 
     final int status;
-
-    public int getStatus() {
-        return status;
-    }
 }

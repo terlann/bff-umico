@@ -1,5 +1,3 @@
 client:
-  order-marketplace:
-    url: localhost:8089
   marketplace:
-    url: localhost:8090
+    url: https://dev.ms-marketplace.kapitalbank.az

@@ -1,7 +1,5 @@
-package az.kapitalbank.bffumico.dto.response;
+package az.kapitalbank.bffumico.client.ordermarketplace.model.response;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -11,8 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BalanceResponseDto {
+public class BalanceResponse {
 
     LocalDate loanEndDate;
     BigDecimal loanLimit;

@@ -1,45 +1,48 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.CreateOrderRequest;
-import az.kapitalbank.bffumico.dto.request.DeliveryProductRequestDto;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
+import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
-import az.kapitalbank.bffumico.dto.response.WrapperResponseDto;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
 import feign.error.AnnotationErrorDecoder;
 import feign.jackson.JacksonDecoder;
+import java.util.UUID;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "order-marketplace",
-        url = "${client.order-marketplace.url}",
+@FeignClient(name = "ms-marketplace",
+        url = "${client.marketplace.url}/api/v1",
         primary = false,
         configuration = OrderMarketplaceClient.FeignConfiguration.class)
 public interface OrderMarketplaceClient {
 
-    @GetMapping("/v1/marketplace/order/check")
-    WrapperResponseDto<Object> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
+    @PostMapping("/orders")
+    ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request);
 
-    @PostMapping("/v1/marketplace/delivery")
-    WrapperResponseDto<Object> deliveryProducts(@RequestBody DeliveryProductRequestDto request);
+    @DeleteMapping("/orders/{trackId}")
+    ResponseEntity<Void> deleteOrder(@PathVariable UUID trackId);
 
-    @PostMapping("/v1/marketplace/order")
-    WrapperResponseDto<Object> createOrder(@RequestBody CreateOrderRequest request);
+    @PostMapping("/orders/purchase")
+    ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request);
 
-    @DeleteMapping("/v1/marketplace/order")
-    WrapperResponseDto<Object> deleteOrder(@RequestParam String trackId);
+    @PostMapping("/orders/reverse")
+    ResponseEntity<Void> reverseOrder(@RequestBody ReverseRequest request);
 
-    @PostMapping("/v1/marketplace/scoring")
-    WrapperResponseDto<Object> scoringOrder(@RequestBody ScoringOrderRequestDto request);
+    @PostMapping("/orders/check")
+    ResponseEntity<CheckOrderResponse> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
 
-    @GetMapping("/v1/marketplace/check/{pinCode}/customer")
-    WrapperResponseDto<Object> checkPinCode(@PathVariable String pinCode);
+    @PostMapping("/scoring")
+    ResponseEntity<Void> scoringOrder(@RequestBody ScoringOrderRequestDto request);
 
     class FeignConfiguration {
         @Bean
