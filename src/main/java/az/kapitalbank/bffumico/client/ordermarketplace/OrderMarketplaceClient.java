@@ -14,7 +14,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,20 +25,20 @@ import org.springframework.web.bind.annotation.RequestParam;
         configuration = OrderMarketplaceClient.FeignConfiguration.class)
 public interface OrderMarketplaceClient {
 
-    @GetMapping("/orders/check")
-    ResponseEntity<CheckOrderResponse> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
-
-    @PostMapping("/orders/purchase")
-    ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request);
-
     @PostMapping("/orders")
     ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request);
 
     @DeleteMapping("/orders/{trackId}")
     ResponseEntity<Void> deleteOrder(@PathVariable String trackId);
 
+    @PostMapping("/orders/purchase")
+    ResponseEntity<Void> purchase(@RequestBody PurchaseRequestDto request);
+
     @PostMapping("/orders/reverse")
     ResponseEntity<Void> reverseOrder(@RequestBody ReverseRequest request);
+
+    @PostMapping("/orders/check")
+    ResponseEntity<CheckOrderResponse> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
 
     @PostMapping("/scoring")
     ResponseEntity<Void> scoringOrder(@RequestBody ScoringOrderRequestDto request);

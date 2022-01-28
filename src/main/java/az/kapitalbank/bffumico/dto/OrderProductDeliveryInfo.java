@@ -2,6 +2,7 @@ package az.kapitalbank.bffumico.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.math.BigDecimal;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -15,4 +16,5 @@ public class OrderProductDeliveryInfo {
     String deliveryAddress;
     String shippingLatitude;
     String shippingLongitude;
+    BigDecimal totalAmount;
 }

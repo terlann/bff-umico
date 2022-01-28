@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 public class ScoringOrderRequestDto {
     String eteOrderId;
     OrderScoringStatus scoringStatus;
-    String creditId;
     LocalDate loanStartDate;
     LocalDate loanEndDate;
     UUID cardUUID;
