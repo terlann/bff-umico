@@ -1,8 +1,8 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
-import az.kapitalbank.bffumico.dto.CustomerInfoDto;
-import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
-import az.kapitalbank.bffumico.dto.OrderProductItem;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.CustomerInfo;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.OrderProductDeliveryInfo;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.OrderProductItem;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.AccessLevel;
@@ -18,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOrderRequest {
-    CustomerInfoDto customerInfo;
+    CustomerInfo customerInfo;
     Integer loanTerm;
     BigDecimal totalAmount;
     List<OrderProductDeliveryInfo> deliveryInfo;

@@ -1,7 +1,9 @@
 package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
 import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.mapper.ScoringMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,9 +17,11 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ScoringService {
 
+    ScoringMapper scoringMapper;
     OrderMarketplaceClient orderMarketplaceClient;
 
     public ResponseEntity<Void> scoringOrder(ScoringOrderRequestDto request) {
-        return orderMarketplaceClient.scoringOrder(request);
+        ScoringOrderRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
+        return orderMarketplaceClient.scoringOrder(orderRequest);
     }
 }

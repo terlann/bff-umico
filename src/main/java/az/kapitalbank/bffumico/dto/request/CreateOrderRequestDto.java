@@ -1,8 +1,8 @@
 package az.kapitalbank.bffumico.dto.request;
 
 import az.kapitalbank.bffumico.dto.CustomerInfoDto;
-import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfo;
-import az.kapitalbank.bffumico.dto.OrderProductItem;
+import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfoDto;
+import az.kapitalbank.bffumico.dto.OrderProductItemDto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
@@ -23,7 +23,7 @@ public class CreateOrderRequestDto {
     Integer loanTerm;
     @NotNull
     BigDecimal totalAmount;
-    List<OrderProductDeliveryInfo> deliveryInfo;
-    List<@Valid OrderProductItem> products;
+    List<OrderProductDeliveryInfoDto> deliveryInfo;
+    List<@Valid OrderProductItemDto> products;
 
 }

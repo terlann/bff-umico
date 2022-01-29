@@ -1,7 +1,6 @@
 package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
@@ -45,12 +44,13 @@ public class OrderService {
     }
 
     public ResponseEntity<Void> reverseOrder(ReverseRequestDto request) {
-        ReverseRequest reverseRequest = orderMapper.toReverseRequest(request);
+        var reverseRequest = orderMapper.toReverseRequest(request);
         return orderMarketplaceClient.reverseOrder(reverseRequest);
     }
 
     public ResponseEntity<Void> purchase(PurchaseRequestDto request) {
-        return orderMarketplaceClient.purchase(request);
+        var purchaseRequest = orderMapper.toPurchaseRequest(request);
+        return orderMarketplaceClient.purchase(purchaseRequest);
     }
 
 }
