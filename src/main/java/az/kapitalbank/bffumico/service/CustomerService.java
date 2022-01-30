@@ -23,8 +23,8 @@ public class CustomerService {
         return ResponseEntity.ok(balanceResponseDto);
     }
 
-    public ResponseEntity<Void> checkPinCode(String pin) {
-        return customerCardClient.checkPin(pin);
+    public void checkPin(String pin) {
+        customerCardClient.checkPin(pin);
     }
 
 

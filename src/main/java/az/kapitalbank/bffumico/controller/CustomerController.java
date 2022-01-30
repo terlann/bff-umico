@@ -5,6 +5,7 @@ import az.kapitalbank.bffumico.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +27,10 @@ public class CustomerController {
         return customerService.getCustomerBalance(umicoUserId, customerId);
     }
 
-    @GetMapping("/{pin_code}")
-    public ResponseEntity<Void> checkCustomerByPin(@PathVariable("pin_code") String pin) {
-        return customerService.checkPinCode(pin);
+    @GetMapping("check/{pin}")
+    public ResponseEntity<Void> checkPin(@PathVariable String pin) {
+        customerService.checkPin(pin);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
