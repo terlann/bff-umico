@@ -12,7 +12,6 @@ import lombok.experimental.FieldDefaults;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CreateOrderResponseDto {
 
-    String eteOrderId;
     UUID trackId;
 
 }
