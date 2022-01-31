@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOrderResponse {
 
-    String eteOrderId;
     UUID trackId;
 
 }
