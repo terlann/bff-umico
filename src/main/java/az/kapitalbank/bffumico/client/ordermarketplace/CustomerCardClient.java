@@ -1,10 +1,8 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
+import az.kapitalbank.bffumico.client.ordermarketplace.model.decoder.CustomerCardClientExceptionDecoder;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceResponse;
 import feign.Logger;
-import feign.codec.ErrorDecoder;
-import feign.error.AnnotationErrorDecoder;
-import feign.jackson.JacksonDecoder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +30,8 @@ public interface CustomerCardClient {
         }
 
         @Bean
-        public ErrorDecoder feignErrorDecoder() {
-            return AnnotationErrorDecoder.builderFor(CustomerCardClient.class)
-                    .withResponseBodyDecoder(new JacksonDecoder())
-                    .build();
+        CustomerCardClientExceptionDecoder exceptionDecoder() {
+            return new CustomerCardClientExceptionDecoder();
         }
     }
 }
