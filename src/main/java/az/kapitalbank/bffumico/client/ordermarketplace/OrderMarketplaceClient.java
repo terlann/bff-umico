@@ -1,5 +1,7 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
+import java.util.UUID;
+
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
@@ -7,10 +9,6 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrde
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
 import feign.Logger;
-import feign.codec.ErrorDecoder;
-import feign.error.AnnotationErrorDecoder;
-import feign.jackson.JacksonDecoder;
-import java.util.UUID;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "ms-marketplace",
         url = "${client.marketplace.url}/api/v1",
-        primary = false,
-        configuration = OrderMarketplaceClient.FeignConfiguration.class)
+        primary = false)
 public interface OrderMarketplaceClient {
 
     @PostMapping("/orders")
@@ -50,11 +47,5 @@ public interface OrderMarketplaceClient {
             return Logger.Level.BASIC;
         }
 
-        @Bean
-        public ErrorDecoder feignErrorDecoder() {
-            return AnnotationErrorDecoder.builderFor(OrderMarketplaceClient.class)
-                    .withResponseBodyDecoder(new JacksonDecoder())
-                    .build();
-        }
     }
 }

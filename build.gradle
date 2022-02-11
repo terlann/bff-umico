@@ -38,6 +38,7 @@ dependencies {
     implementation "io.github.openfeign:feign-jackson:$openFeignVersion"
     implementation "io.github.openfeign:feign-annotation-error-decoder:$openFeignVersion"
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.6'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
     implementation "org.mapstruct:mapstruct:$mapStructversion"
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructversion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
@@ -46,6 +47,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    implementation "org.json:json:$jsonVersion"
 }
 
 dependencyManagement {
