@@ -2,7 +2,6 @@ package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import java.util.UUID;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.decoder.CustomerCardClientExceptionDecoder;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
@@ -21,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "ms-marketplace",
         url = "${client.marketplace.url}/api/v1",
-        primary = false,
-        configuration = OrderMarketplaceClient.FeignConfiguration.class)
+        primary = false)
 public interface OrderMarketplaceClient {
 
     @PostMapping("/orders")
@@ -47,11 +45,6 @@ public interface OrderMarketplaceClient {
         @Bean
         Logger.Level loggerLevel() {
             return Logger.Level.BASIC;
-        }
-
-        @Bean
-        CustomerCardClientExceptionDecoder exceptionDecoder() {
-            return new CustomerCardClientExceptionDecoder();
         }
 
     }

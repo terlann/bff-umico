@@ -1,6 +1,5 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.decoder.CustomerCardClientExceptionDecoder;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceResponse;
 import feign.Logger;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "marketplace",
         url = "${client.marketplace.url}/api/v1",
-        primary = false,
-        configuration = CustomerCardClient.FeignConfiguration.class)
+        primary = false)
 public interface CustomerCardClient {
 
     @GetMapping("/customers/balance")
@@ -29,9 +27,5 @@ public interface CustomerCardClient {
             return Logger.Level.BASIC;
         }
 
-        @Bean
-        CustomerCardClientExceptionDecoder exceptionDecoder() {
-            return new CustomerCardClientExceptionDecoder();
-        }
     }
 }

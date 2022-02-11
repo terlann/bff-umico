@@ -1,9 +1,12 @@
 package az.kapitalbank.bffumico.exception;
 
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.Map;
+
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -12,15 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class CommonExceptionHandling extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UmicoException.class)
-    public ResponseEntity<Object> handleFeignException(UmicoException ex) {
-        var errorResponse = new ErrorResponse(ex.getCode(), ex.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-    }
-
     @ExceptionHandler(FeignException.class)
-    public ResponseEntity<Object> handleFeignException(FeignException ex) {
-        var errorResponse = new ErrorResponse(String.valueOf(ex.status()), ex.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    public Map<String, Object> handleFeignStatusException(FeignException ex, HttpServletResponse response) {
+        response.setStatus(ex.status());
+        return new JSONObject(ex.contentUTF8()).toMap();
     }
 }
