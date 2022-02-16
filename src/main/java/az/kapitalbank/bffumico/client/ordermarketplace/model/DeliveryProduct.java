@@ -1,6 +1,7 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model;
 
 import java.math.BigDecimal;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

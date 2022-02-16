@@ -20,8 +20,8 @@ public class ScoringService {
     ScoringMapper scoringMapper;
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public ResponseEntity<Void> scoringOrder(ScoringOrderRequestDto request) {
+    public ResponseEntity<Void> telesalesResult(ScoringOrderRequestDto request) {
         ScoringOrderRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
-        return orderMarketplaceClient.scoringOrder(orderRequest);
+        return orderMarketplaceClient.telesalesResult(orderRequest);
     }
 }

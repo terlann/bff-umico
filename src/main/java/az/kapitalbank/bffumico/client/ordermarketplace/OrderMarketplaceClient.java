@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
-import java.util.UUID;
+import java.util.List;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
@@ -8,15 +8,14 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequ
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
 import feign.Logger;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "ms-marketplace",
         url = "${client.marketplace.url}/api/v1",
@@ -26,20 +25,17 @@ public interface OrderMarketplaceClient {
     @PostMapping("/orders")
     ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request);
 
-    @DeleteMapping("/orders/{trackId}")
-    ResponseEntity<Void> deleteOrder(@PathVariable UUID trackId);
+    @PostMapping("/orders/check/{telesales-order-id}")
+    ResponseEntity<CheckOrderResponse> checkOrder(@PathVariable("telesales-order-id") String telesalesOrderId);
+
+    @PostMapping("/telesales/result")
+    ResponseEntity<Void> telesalesResult(@RequestBody ScoringOrderRequest request);
 
     @PostMapping("/orders/purchase")
-    ResponseEntity<Void> purchase(@RequestBody PurchaseRequest request);
+    ResponseEntity<List<PurchaseResponse>> purchase(@RequestBody PurchaseRequest request);
 
     @PostMapping("/orders/reverse")
-    ResponseEntity<Void> reverseOrder(@RequestBody ReverseRequest request);
-
-    @PostMapping("/orders/check")
-    ResponseEntity<CheckOrderResponse> checkOrder(@RequestParam("eteOrderId") String eteOrderId);
-
-    @PostMapping("/scoring")
-    ResponseEntity<Void> scoringOrder(@RequestBody ScoringOrderRequest request);
+    ResponseEntity<PurchaseResponse> reverseOrder(@RequestBody ReverseRequest request);
 
     class FeignConfiguration {
         @Bean

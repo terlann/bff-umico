@@ -1,8 +1,9 @@
 package az.kapitalbank.bffumico.dto.request;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

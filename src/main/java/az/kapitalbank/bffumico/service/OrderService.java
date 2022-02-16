@@ -1,13 +1,15 @@
 package az.kapitalbank.bffumico.service;
 
+import java.util.List;
+
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
+import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
-import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -29,28 +31,29 @@ public class OrderService {
         var createOrderResponse = orderMarketplaceClient.createOrder(createOrderRequest);
         var createOrderResponseDto =
                 orderMapper.toCreateOrderResponseDto(createOrderResponse.getBody());
-        return ResponseEntity.ok(createOrderResponseDto);
+        return ResponseEntity.status(createOrderResponse.getStatusCode()).body(createOrderResponseDto);
     }
 
-    public ResponseEntity<Void> deleteOrder(UUID trackId) {
-        return orderMarketplaceClient.deleteOrder(trackId);
-    }
-
-    public ResponseEntity<CheckOrderResponseDto> checkOrder(String eteId) {
-        var checkOrderResponse = orderMarketplaceClient.checkOrder(eteId);
+    public ResponseEntity<CheckOrderResponseDto> checkOrder(String telesalesOrderId) {
+        var checkOrderResponse = orderMarketplaceClient.checkOrder(telesalesOrderId);
         var checkOrderResponseDto =
                 orderMapper.toCheckOrderResponseDto(checkOrderResponse.getBody());
-        return ResponseEntity.ok(checkOrderResponseDto);
+        return ResponseEntity.status(checkOrderResponse.getStatusCode()).body(checkOrderResponseDto);
     }
 
-    public ResponseEntity<Void> reverseOrder(ReverseRequestDto request) {
+    public ResponseEntity<PurchaseResponseDto> reverseOrder(ReverseRequestDto request) {
         var reverseRequest = orderMapper.toReverseRequest(request);
-        return orderMarketplaceClient.reverseOrder(reverseRequest);
+        var purchaseResponse = orderMarketplaceClient.reverseOrder(reverseRequest);
+        var purchaseResponseDto = orderMapper.toPurchaseResponseDto(purchaseResponse.getBody());
+        return ResponseEntity.status(purchaseResponse.getStatusCode()).body(purchaseResponseDto);
     }
 
-    public ResponseEntity<Void> purchase(PurchaseRequestDto request) {
+    public ResponseEntity<List<PurchaseResponseDto>> purchase(PurchaseRequestDto request) {
         var purchaseRequest = orderMapper.toPurchaseRequest(request);
-        return orderMarketplaceClient.purchase(purchaseRequest);
+        var purchaseResponses = orderMarketplaceClient.purchase(purchaseRequest);
+        var purchaseResponseDtoList =
+                orderMapper.toPurchaseResponseDtoList(purchaseResponses.getBody());
+        return ResponseEntity.status(purchaseResponses.getStatusCode()).body(purchaseResponseDtoList);
     }
 
 }
