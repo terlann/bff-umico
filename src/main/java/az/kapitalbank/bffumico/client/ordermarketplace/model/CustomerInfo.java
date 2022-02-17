@@ -2,6 +2,7 @@ package az.kapitalbank.bffumico.client.ordermarketplace.model;
 
 import java.time.LocalDate;
 import java.util.UUID;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

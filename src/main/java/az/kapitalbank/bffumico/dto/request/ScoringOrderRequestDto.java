@@ -1,10 +1,10 @@
 package az.kapitalbank.bffumico.dto.request;
 
-import az.kapitalbank.bffumico.constant.OrderScoringStatus;
+import java.time.LocalDate;
+
+import az.kapitalbank.bffumico.constant.ScoringStatus;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.time.LocalDate;
-import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -13,9 +13,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ScoringOrderRequestDto {
-    String eteOrderId;
-    OrderScoringStatus scoringStatus;
-    LocalDate loanStartDate;
-    LocalDate loanEndDate;
-    UUID cardUUID;
+    String telesalesOrderId;
+    ScoringStatus scoringStatus;
+    LocalDate loanContractStartDate;
+    LocalDate loanContractEndDate;
+    String cardPan;
 }

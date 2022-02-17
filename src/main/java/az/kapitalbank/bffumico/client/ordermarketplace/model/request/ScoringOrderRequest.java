@@ -1,8 +1,8 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
-import az.kapitalbank.bffumico.constant.OrderScoringStatus;
 import java.time.LocalDate;
-import java.util.UUID;
+
+import az.kapitalbank.bffumico.constant.ScoringStatus;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,9 +10,9 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ScoringOrderRequest {
-    String eteOrderId;
-    OrderScoringStatus scoringStatus;
-    LocalDate loanStartDate;
-    LocalDate loanEndDate;
-    UUID cardUUID;
+    String telesalesOrderId;
+    ScoringStatus scoringStatus;
+    LocalDate loanContractStartDate;
+    LocalDate loanContractEndDate;
+    String cardPan;
 }

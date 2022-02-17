@@ -1,7 +1,6 @@
 package az.kapitalbank.bffumico.exception;
 
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.Map;
 
 import feign.FeignException;

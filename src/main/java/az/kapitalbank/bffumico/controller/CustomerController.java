@@ -1,5 +1,7 @@
 package az.kapitalbank.bffumico.controller;
 
+import java.util.UUID;
+
 import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
 import az.kapitalbank.bffumico.service.CustomerService;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +27,7 @@ public class CustomerController {
     @GetMapping("/balance")
     @ApiOperation("Check Balance")
     public ResponseEntity<BalanceResponseDto> getCustomerBalance(@RequestParam("umico_user_id") String umicoUserId,
-                                                                 @RequestParam("customer_id") String customerId) {
+                                                                 @RequestParam("customer_id") UUID customerId) {
         return customerService.getCustomerBalance(umicoUserId, customerId);
     }
 

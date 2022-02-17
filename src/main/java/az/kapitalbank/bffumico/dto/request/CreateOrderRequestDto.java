@@ -1,14 +1,13 @@
 package az.kapitalbank.bffumico.dto.request;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import az.kapitalbank.bffumico.dto.CustomerInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductItemDto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.math.BigDecimal;
-import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -19,11 +18,9 @@ import lombok.experimental.FieldDefaults;
 public class CreateOrderRequestDto {
 
     CustomerInfoDto customerInfo;
-    @NotNull
     Integer loanTerm;
-    @NotNull
     BigDecimal totalAmount;
     List<OrderProductDeliveryInfoDto> deliveryInfo;
-    List<@Valid OrderProductItemDto> products;
+    List<OrderProductItemDto> products;
 
 }

@@ -1,10 +1,11 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import az.kapitalbank.bffumico.client.ordermarketplace.model.CustomerInfo;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.OrderProductDeliveryInfo;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.OrderProductItem;
-import java.math.BigDecimal;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

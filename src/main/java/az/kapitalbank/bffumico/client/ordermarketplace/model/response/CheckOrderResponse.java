@@ -2,6 +2,7 @@ package az.kapitalbank.bffumico.client.ordermarketplace.model.response;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CheckOrderResponse {
 
-    String eteOrderId;
+    String telesalesOrderId;
     UUID trackId;
     BigDecimal totalAmount;
 
