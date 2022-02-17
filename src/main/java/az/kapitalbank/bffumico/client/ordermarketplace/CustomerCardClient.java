@@ -1,5 +1,7 @@
 package az.kapitalbank.bffumico.client.ordermarketplace;
 
+import java.util.UUID;
+
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceResponse;
 import feign.Logger;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -16,7 +18,7 @@ public interface CustomerCardClient {
 
     @GetMapping("/customers/balance")
     ResponseEntity<BalanceResponse> getCustomerBalance(@RequestParam String umicoUserId,
-                                                       @RequestParam String customerId);
+                                                       @RequestParam UUID customerId);
 
     @GetMapping("/customers/check/{pin}")
     void checkPin(@PathVariable String pin);
