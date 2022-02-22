@@ -1,7 +1,10 @@
 plugins {
     id 'java'
+    id 'checkstyle'
     id 'org.springframework.boot' version "$springBootPluginVersion"
     id 'io.spring.dependency-management' version "$springDependencyVersion"
+    id 'jacoco'
+    id 'org.sonarqube' version "$sonarQubeVersion"
 }
 
 group = 'az.kapitalbank.bff-umico'
@@ -18,23 +21,24 @@ repositories {
     }
 }
 
+jar {
+    enabled = false
+}
+
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-starter-validation:$springBootVersion"
-	implementation "org.springframework.cloud:spring-cloud-starter-bootstrap:$springCloudVersion"
-	implementation "org.springframework.cloud:spring-cloud-starter-consul-config:$springCloudVersion"
-	implementation "org.springframework.cloud:spring-cloud-starter-vault-config:$springCloudVersion"
+    implementation "org.springframework.cloud:spring-cloud-starter-bootstrap:$springCloudVersion"
+    implementation "org.springframework.cloud:spring-cloud-starter-consul-config:$springCloudVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudVersion"
-    implementation "org.springframework.kafka:spring-kafka:$kafkaVersion"
-    implementation "com.oracle.database.jdbc:ojdbc8:$oracleVersion"
-    implementation "org.springdoc:springdoc-openapi-webmvc-core:$springDocVersion"
-    implementation "org.springdoc:springdoc-openapi-ui:$springDocVersion"
-    implementation "org.springdoc:springdoc-openapi-data-rest:$springDocVersion"
+    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
     implementation "io.springfox:springfox-bean-validators:$beanValidatorVersion"
     implementation "io.github.openfeign:feign-jackson:$openFeignVersion"
     implementation "io.github.openfeign:feign-annotation-error-decoder:$openFeignVersion"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.6'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
     implementation "org.mapstruct:mapstruct:$mapStructversion"
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructversion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
@@ -43,6 +47,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    implementation "org.json:json:$jsonVersion"
 }
 
 dependencyManagement {
@@ -54,4 +59,43 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion = "${checkstyleVersion}"
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+sonarqube {
+    properties {
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPath", "build/jacoco/test.exec"
+        property "sonar.junit.reportsPath", "build/test-results/test"
+        property "sonar.projectKey", rootProject.name
+        property "sonar.host.url", "https://sonarqube.kapitalbank.az"
+        property "sonar.scm.forceReloadAll", "true"
+        property "sonar.java.checkstyle.reportPaths", "build/reports/checkstyle/main.xml"
+        property "sonar.coverage.exclusions", "**/az/kapitalbank/adpatlas/**"
+        property "sonar.cpd.exclusions", "**/az/kapitalbank/adpatlas/**"
+    }
+}
+
+jacoco {
+    toolVersion = "$jacocoToolVersion"
+    reportsDir = file("build/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
 }
