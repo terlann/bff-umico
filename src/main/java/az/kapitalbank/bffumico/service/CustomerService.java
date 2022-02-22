@@ -27,5 +27,4 @@ public class CustomerService {
         customerCardClient.checkPin(pin);
     }
 
-
 }
