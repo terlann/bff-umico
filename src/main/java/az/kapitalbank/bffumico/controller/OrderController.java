@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,25 +32,25 @@ public class OrderController {
     @PostMapping
     @ApiOperation("All Transaction")
     public ResponseEntity<CreateOrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto request) {
-        return service.createOrder(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createOrder(request));
     }
 
     @PostMapping("/reverse")
     @ApiOperation("Order Cancellation (UNBLOCK) Reverse Amount")
     public ResponseEntity<PurchaseResponseDto> reverseOrder(@RequestBody ReverseRequestDto request) {
-        return service.reverseOrder(request);
+        return ResponseEntity.ok(service.reverseOrder(request));
     }
 
     @PostMapping("/check/{telesalesOrderId}")
     @ApiOperation(value = "Order Delivery", hidden = true)
     public ResponseEntity<CheckOrderResponseDto> checkOrder(@PathVariable("telesalesOrderId") String telesalesOrderId) {
-        return service.checkOrder(telesalesOrderId);
+        return ResponseEntity.ok(service.checkOrder(telesalesOrderId));
     }
 
     @PostMapping("/purchase")
     @ApiOperation("Order Delivery")
     public ResponseEntity<List<PurchaseResponseDto>> purchase(@RequestBody PurchaseRequestDto request) {
-        return service.purchase(request);
+        return ResponseEntity.ok(service.purchase(request));
     }
 
 }
