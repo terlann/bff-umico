@@ -14,7 +14,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -26,34 +25,28 @@ public class OrderService {
     OrderMarketplaceClient orderMarketplaceClient;
     OrderMapper orderMapper;
 
-    public ResponseEntity<CreateOrderResponseDto> createOrder(CreateOrderRequestDto request) {
+    public CreateOrderResponseDto createOrder(CreateOrderRequestDto request) {
         var createOrderRequest = orderMapper.toCreateOrderRequest(request);
         var createOrderResponse = orderMarketplaceClient.createOrder(createOrderRequest);
-        var createOrderResponseDto =
-                orderMapper.toCreateOrderResponseDto(createOrderResponse.getBody());
-        return ResponseEntity.status(createOrderResponse.getStatusCode()).body(createOrderResponseDto);
+        return orderMapper.toCreateOrderResponseDto(createOrderResponse);
+
     }
 
-    public ResponseEntity<CheckOrderResponseDto> checkOrder(String telesalesOrderId) {
+    public CheckOrderResponseDto checkOrder(String telesalesOrderId) {
         var checkOrderResponse = orderMarketplaceClient.checkOrder(telesalesOrderId);
-        var checkOrderResponseDto =
-                orderMapper.toCheckOrderResponseDto(checkOrderResponse.getBody());
-        return ResponseEntity.status(checkOrderResponse.getStatusCode()).body(checkOrderResponseDto);
+        return orderMapper.toCheckOrderResponseDto(checkOrderResponse);
     }
 
-    public ResponseEntity<PurchaseResponseDto> reverseOrder(ReverseRequestDto request) {
+    public PurchaseResponseDto reverseOrder(ReverseRequestDto request) {
         var reverseRequest = orderMapper.toReverseRequest(request);
         var purchaseResponse = orderMarketplaceClient.reverseOrder(reverseRequest);
-        var purchaseResponseDto = orderMapper.toPurchaseResponseDto(purchaseResponse.getBody());
-        return ResponseEntity.status(purchaseResponse.getStatusCode()).body(purchaseResponseDto);
+        return orderMapper.toPurchaseResponseDto(purchaseResponse);
     }
 
-    public ResponseEntity<List<PurchaseResponseDto>> purchase(PurchaseRequestDto request) {
+    public List<PurchaseResponseDto> purchase(PurchaseRequestDto request) {
         var purchaseRequest = orderMapper.toPurchaseRequest(request);
         var purchaseResponses = orderMarketplaceClient.purchase(purchaseRequest);
-        var purchaseResponseDtoList =
-                orderMapper.toPurchaseResponseDtoList(purchaseResponses.getBody());
-        return ResponseEntity.status(purchaseResponses.getStatusCode()).body(purchaseResponseDtoList);
+        return orderMapper.toPurchaseResponseDtoList(purchaseResponses);
     }
 
 }

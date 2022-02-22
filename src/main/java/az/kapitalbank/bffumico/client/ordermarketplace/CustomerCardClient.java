@@ -6,7 +6,6 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceRes
 import feign.Logger;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
         primary = false)
 public interface CustomerCardClient {
 
-    @GetMapping("/customers/balance")
-    ResponseEntity<BalanceResponse> getCustomerBalance(@RequestParam String umicoUserId,
-                                                       @RequestParam UUID customerId);
+    @GetMapping("/balance")
+    BalanceResponse getCustomerBalance(@RequestParam String umicoUserId, @RequestParam UUID customerId);
 
     @GetMapping("/customers/check/{pin}")
     void checkPin(@PathVariable String pin);

@@ -28,7 +28,8 @@ public class CustomerController {
     @ApiOperation("Check Balance")
     public ResponseEntity<BalanceResponseDto> getCustomerBalance(@RequestParam("umico_user_id") String umicoUserId,
                                                                  @RequestParam("customer_id") UUID customerId) {
-        return customerService.getCustomerBalance(umicoUserId, customerId);
+        var customerBalance = customerService.getCustomerBalance(umicoUserId, customerId);
+        return ResponseEntity.ok(customerBalance);
     }
 
     @GetMapping("check/{pin}")

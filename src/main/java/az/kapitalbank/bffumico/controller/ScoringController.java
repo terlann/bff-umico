@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,8 @@ public class ScoringController {
     @PostMapping
     @ApiOperation(value = "telesales result", hidden = true)
     public ResponseEntity<Void> telesalesResult(@RequestBody ScoringOrderRequestDto request) {
-        return service.telesalesResult(request);
+        service.telesalesResult(request);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

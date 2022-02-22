@@ -8,7 +8,6 @@ import az.kapitalbank.bffumico.mapper.CustomerMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,15 +18,13 @@ public class CustomerService {
     CustomerMapper customerMapper;
     CustomerCardClient customerCardClient;
 
-    public ResponseEntity<BalanceResponseDto> getCustomerBalance(String umicoUserId, UUID customerId) {
+    public BalanceResponseDto getCustomerBalance(String umicoUserId, UUID customerId) {
         var balanceResponse = customerCardClient.getCustomerBalance(umicoUserId, customerId);
-        var balanceResponseDto = customerMapper.toBalanceResponseDto(balanceResponse.getBody());
-        return ResponseEntity.ok(balanceResponseDto);
+        return customerMapper.toBalanceResponseDto(balanceResponse);
     }
 
     public void checkPin(String pin) {
         customerCardClient.checkPin(pin);
     }
-
 
 }
