@@ -17,6 +17,7 @@ public class CommonExceptionHandling extends ResponseEntityExceptionHandler {
     @ExceptionHandler(FeignException.class)
     public Map<String, Object> handleFeignStatusException(FeignException ex, HttpServletResponse response) {
         response.setStatus(ex.status());
+        log.error("Exception: {}", ex.contentUTF8());
         return new JSONObject(ex.contentUTF8()).toMap();
     }
 }
