@@ -5,7 +5,7 @@ import java.util.List;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
@@ -27,8 +27,8 @@ public interface OrderMarketplaceClient {
     @PostMapping("/orders/check/{telesales-order-id}")
     CheckOrderResponse checkOrder(@PathVariable("telesales-order-id") String telesalesOrderId);
 
-    @PostMapping("/telesales/result")
-    void telesalesResult(@RequestBody TelesalesResultRequest request);
+    @PostMapping("/orders/telesales/result")
+    void telesalesResult(@RequestBody ScoringOrderRequest request);
 
     @PostMapping("/orders/purchase")
     List<PurchaseResponse> purchase(@RequestBody PurchaseRequest request);
