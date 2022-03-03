@@ -14,6 +14,6 @@ import lombok.experimental.FieldDefaults;
 public class DeliveryProductDto {
     String productId;
     String itemType;
-    BigDecimal orderLastAmount;
+    BigDecimal orderAmount;
     String orderNo;
 }

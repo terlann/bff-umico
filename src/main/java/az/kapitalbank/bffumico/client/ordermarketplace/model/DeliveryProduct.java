@@ -9,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DeliveryProduct {
+    String orderNo;
     String productId;
     String itemType;
-    BigDecimal orderLastAmount;
-    String orderNo;
+    BigDecimal orderAmount;
 }

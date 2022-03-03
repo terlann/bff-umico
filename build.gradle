@@ -77,14 +77,22 @@ checkstyleTest {
 sonarqube {
     properties {
         property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.debug", "true"
         property "sonar.jacoco.reportPath", "build/jacoco/test.exec"
         property "sonar.junit.reportsPath", "build/test-results/test"
         property "sonar.projectKey", rootProject.name
         property "sonar.host.url", "https://sonarqube.kapitalbank.az"
         property "sonar.scm.forceReloadAll", "true"
         property "sonar.java.checkstyle.reportPaths", "build/reports/checkstyle/main.xml"
-        property "sonar.coverage.exclusions", "**/az/kapitalbank/adpatlas/**"
-        property "sonar.cpd.exclusions", "**/az/kapitalbank/adpatlas/**"
+        property "sonar.cpd.exclusions", "**/az/kapitalbank/bffumico/**"
+        property "sonar.coverage.exclusions",
+                "**/az/kapitalbank/bffumico/client/**," +
+                        "**/az/kapitalbank/bffumico/config/**," +
+                        "**/az/kapitalbank/bffumico/constant/**," +
+                        "**/az/kapitalbank/bffumico/controller/**," +
+                        "**/az/kapitalbank/bffumico/dto/**," +
+                        "**/az/kapitalbank/bffumico/exception/**," +
+                        "**/az/kapitalbank/bffumico/mapper/**"
     }
 }
 
