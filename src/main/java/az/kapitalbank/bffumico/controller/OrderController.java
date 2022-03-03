@@ -5,6 +5,7 @@ import java.util.List;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
+import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
@@ -51,6 +52,13 @@ public class OrderController {
     @ApiOperation("Order Delivery")
     public ResponseEntity<List<PurchaseResponseDto>> purchase(@RequestBody PurchaseRequestDto request) {
         return ResponseEntity.ok(service.purchase(request));
+    }
+
+    @PostMapping("/telesales/result")
+    @ApiOperation(value = "telesales result", hidden = true)
+    public ResponseEntity<Void> telesalesResult(@RequestBody ScoringOrderRequestDto request) {
+        service.telesalesResult(request);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
