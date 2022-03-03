@@ -1,12 +1,12 @@
 package az.kapitalbank.bffumico.mapper;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ScoringMapper {
 
-    ScoringOrderRequest toScoringOrderRequest(ScoringOrderRequestDto request);
+    TelesalesResultRequest toScoringOrderRequest(TelesalesResultRequestDto request);
 
 }

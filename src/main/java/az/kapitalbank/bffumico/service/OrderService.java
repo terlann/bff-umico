@@ -3,11 +3,11 @@ package az.kapitalbank.bffumico.service;
 import java.util.List;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
@@ -53,8 +53,8 @@ public class OrderService {
         return orderMapper.toPurchaseResponseDtoList(purchaseResponses);
     }
 
-    public void telesalesResult(ScoringOrderRequestDto request) {
-        ScoringOrderRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
+    public void telesalesResult(TelesalesResultRequestDto request) {
+        TelesalesResultRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
         orderMarketplaceClient.telesalesResult(orderRequest);
     }
 }

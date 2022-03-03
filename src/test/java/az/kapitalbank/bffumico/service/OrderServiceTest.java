@@ -1,8 +1,8 @@
 package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
 import org.junit.jupiter.api.Test;
@@ -27,10 +27,10 @@ class OrderServiceTest {
 
     @Test
     void telesalesResult() {
-        var requestDto = ScoringOrderRequestDto.builder()
+        var requestDto = TelesalesResultRequestDto.builder()
                 .pan("123456789")
                 .build();
-        var request = ScoringOrderRequest.builder()
+        var request = TelesalesResultRequest.builder()
                 .pan("123456789")
                 .build();
         when(scoringMapper.toScoringOrderRequest(requestDto)).thenReturn(request);
