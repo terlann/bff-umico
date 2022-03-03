@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import lombok.AccessLevel;
@@ -12,5 +13,5 @@ public class ReverseRequest {
     String umicoUserId;
     UUID customerId;
     String orderNo;
-    String orderAmount;
+    BigDecimal orderAmount;
 }
