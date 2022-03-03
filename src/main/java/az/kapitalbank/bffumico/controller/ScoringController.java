@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.dto.request.TelesalesRequestDto;
 import az.kapitalbank.bffumico.service.ScoringService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/marketplace/scoring")
+@RequestMapping("/api/v1/marketplace//telesales/result")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ScoringController {
 
@@ -23,7 +23,7 @@ public class ScoringController {
 
     @PostMapping
     @ApiOperation(value = "telesales result", hidden = true)
-    public ResponseEntity<Void> telesalesResult(@RequestBody ScoringOrderRequestDto request) {
+    public ResponseEntity<Void> telesalesResult(@RequestBody TelesalesRequestDto request) {
         service.telesalesResult(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

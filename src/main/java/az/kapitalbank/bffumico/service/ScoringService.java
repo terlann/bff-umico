@@ -1,8 +1,8 @@
 package az.kapitalbank.bffumico.service;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ScoringOrderRequest;
-import az.kapitalbank.bffumico.dto.request.ScoringOrderRequestDto;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.dto.request.TelesalesRequestDto;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class ScoringService {
     ScoringMapper scoringMapper;
     OrderMarketplaceClient orderMarketplaceClient;
 
-    public void telesalesResult(ScoringOrderRequestDto request) {
-        ScoringOrderRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
+    public void telesalesResult(TelesalesRequestDto request) {
+        TelesalesResultRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
         orderMarketplaceClient.telesalesResult(orderRequest);
     }
 }

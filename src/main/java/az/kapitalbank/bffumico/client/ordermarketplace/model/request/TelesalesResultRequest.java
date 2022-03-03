@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ScoringOrderRequest {
+public class TelesalesResultRequest {
     String telesalesOrderId;
     ScoringStatus scoringStatus;
     LocalDate loanStartDate;

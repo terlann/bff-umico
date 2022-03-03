@@ -12,10 +12,10 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ScoringOrderRequestDto {
+public class TelesalesRequestDto {
     String telesalesOrderId;
     ScoringStatus scoringStatus;
-    LocalDate loanContractStartDate;
-    LocalDate loanContractEndDate;
-    String cardPan;
+    LocalDate loanStartDate;
+    LocalDate loanEndDate;
+    String pan;
 }
