@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.dto.request;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -15,5 +16,5 @@ public class ReverseRequestDto {
     String umicoUserId;
     UUID customerId;
     String orderNo;
-    String orderAmount;
+    BigDecimal orderAmount;
 }

@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 public class ScoringOrderRequest {
     String telesalesOrderId;
     ScoringStatus scoringStatus;
-    LocalDate loanContractStartDate;
-    LocalDate loanContractEndDate;
-    String cardPan;
+    LocalDate loanStartDate;
+    LocalDate loanEndDate;
+    String pan;
 }
