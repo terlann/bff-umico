@@ -1,10 +1,9 @@
 package az.kapitalbank.bffumico.controller;
 
-import java.util.UUID;
-
 import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
 import az.kapitalbank.bffumico.service.CustomerService;
 import io.swagger.annotations.ApiOperation;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,8 +25,9 @@ public class CustomerController {
 
     @GetMapping("/balance")
     @ApiOperation("Check Balance")
-    public ResponseEntity<BalanceResponseDto> getCustomerBalance(@RequestParam("umico_user_id") String umicoUserId,
-                                                                 @RequestParam("customer_id") UUID customerId) {
+    public ResponseEntity<BalanceResponseDto> getCustomerBalance(
+            @RequestParam("umico_user_id") String umicoUserId,
+            @RequestParam("customer_id") UUID customerId) {
         var customerBalance = customerService.getCustomerBalance(umicoUserId, customerId);
         return ResponseEntity.ok(customerBalance);
     }

@@ -1,6 +1,7 @@
 package az.kapitalbank.bffumico.service;
 
-import java.util.UUID;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
@@ -8,17 +9,12 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.response.SendOtpRes
 import az.kapitalbank.bffumico.dto.request.SendOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
 import az.kapitalbank.bffumico.mapper.OtpMapper;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.util.reflection.LenientCopyTool;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class OtpServiceTest {

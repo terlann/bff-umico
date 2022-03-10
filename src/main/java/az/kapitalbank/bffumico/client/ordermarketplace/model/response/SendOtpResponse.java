@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SendOtpResponse {
-    String message;
-    String maskedMobileNum;
+    private String message;
+    private String maskedMobileNum;
 }
