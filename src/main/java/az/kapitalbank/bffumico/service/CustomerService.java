@@ -1,10 +1,9 @@
 package az.kapitalbank.bffumico.service;
 
-import java.util.UUID;
-
 import az.kapitalbank.bffumico.client.ordermarketplace.CustomerCardClient;
 import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
 import az.kapitalbank.bffumico.mapper.CustomerMapper;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
