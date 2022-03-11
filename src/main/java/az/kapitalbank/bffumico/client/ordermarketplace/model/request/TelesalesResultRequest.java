@@ -17,7 +17,7 @@ import lombok.experimental.FieldDefaults;
 public class TelesalesResultRequest {
     String telesalesOrderId;
     ScoringStatus scoringStatus;
-    LocalDate loanStartDate;
-    LocalDate loanEndDate;
-    String pan;
+    LocalDate loanContractStartDate;
+    LocalDate loanContractEndDate;
+    String uid;
 }
