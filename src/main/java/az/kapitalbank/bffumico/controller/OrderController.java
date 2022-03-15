@@ -43,10 +43,10 @@ public class OrderController {
         return ResponseEntity.ok(service.reverseOrder(request));
     }
 
-    @PostMapping("/check/{telesalesOrderId}")
-    @ApiOperation(value = "Order Delivery", hidden = true)
+    @PostMapping("/check/{telesales-order-id}")
+    @ApiOperation(value = "Telesales order check")
     public ResponseEntity<CheckOrderResponseDto> checkOrder(
-            @PathVariable("telesalesOrderId") String telesalesOrderId) {
+            @PathVariable("telesales-order-id") String telesalesOrderId) {
         return ResponseEntity.ok(service.checkOrder(telesalesOrderId));
     }
 
@@ -58,7 +58,7 @@ public class OrderController {
     }
 
     @PostMapping("/telesales/result")
-    @ApiOperation(value = "telesales result", hidden = true)
+    @ApiOperation(value = "telesales result")
     public ResponseEntity<Void> telesalesResult(@RequestBody TelesalesResultRequestDto request) {
         service.telesalesResult(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
