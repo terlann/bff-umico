@@ -20,4 +20,5 @@ public class TelesalesResultRequest {
     LocalDate loanContractStartDate;
     LocalDate loanContractEndDate;
     String uid;
+    String pan;
 }
