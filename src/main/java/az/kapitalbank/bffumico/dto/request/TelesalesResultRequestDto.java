@@ -23,4 +23,5 @@ public class TelesalesResultRequestDto {
     LocalDate loanContractStartDate;
     LocalDate loanContractEndDate;
     String uid;
+    String pan;
 }
