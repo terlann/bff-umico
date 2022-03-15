@@ -58,7 +58,7 @@ public class OrderController {
     }
 
     @PostMapping("/telesales/result")
-    @ApiOperation(value = "telesales result")
+    @ApiOperation(value = "telesales order result")
     public ResponseEntity<Void> telesalesResult(@RequestBody TelesalesResultRequestDto request) {
         service.telesalesResult(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
