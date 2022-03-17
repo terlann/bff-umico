@@ -4,11 +4,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.OtpVerifyRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.VerifyOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.SendOtpResponse;
-import az.kapitalbank.bffumico.dto.request.OtpVerifyRequestDto;
 import az.kapitalbank.bffumico.dto.request.SendOtpRequestDto;
+import az.kapitalbank.bffumico.dto.request.VerifyOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
 import az.kapitalbank.bffumico.mapper.OtpMapper;
 import java.util.UUID;
@@ -58,9 +58,9 @@ class OtpServiceTest {
 
     @Test
     void verify_success() {
-        var otpVerifyRequest = OtpVerifyRequest.builder().otp("1234")
+        var otpVerifyRequest = VerifyOtpRequest.builder().otp("1234")
                 .trackId(UUID.fromString("3a30a65a-9bec-11ec-b909-0242ac120002")).build();
-        var otpVerifyRequestDto = OtpVerifyRequestDto.builder().otp("1234")
+        var otpVerifyRequestDto = VerifyOtpRequestDto.builder().otp("1234")
                 .trackId(UUID.fromString("3a30a65a-9bec-11ec-b909-0242ac120002")).build();
         when(otpMapper.toOtpVerifyRequest(otpVerifyRequestDto)).thenReturn(otpVerifyRequest);
 

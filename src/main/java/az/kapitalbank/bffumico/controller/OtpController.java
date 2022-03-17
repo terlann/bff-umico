@@ -1,7 +1,7 @@
 package az.kapitalbank.bffumico.controller;
 
-import az.kapitalbank.bffumico.dto.request.OtpVerifyRequestDto;
 import az.kapitalbank.bffumico.dto.request.SendOtpRequestDto;
+import az.kapitalbank.bffumico.dto.request.VerifyOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
 import az.kapitalbank.bffumico.service.OtpService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class OtpController {
     }
 
     @PostMapping("/verify")
-    public ResponseEntity<Void> verify(@RequestBody OtpVerifyRequestDto requestDto) {
+    public ResponseEntity<Void> verify(@RequestBody VerifyOtpRequestDto requestDto) {
         otpService.verify(requestDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
