@@ -5,6 +5,7 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseReq
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.VerifyOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
@@ -38,7 +39,10 @@ public interface OrderMarketplaceClient {
     PurchaseResponse reverseOrder(@RequestBody ReverseRequest request);
 
     @PostMapping("/otp/send")
-    SendOtpResponse send(SendOtpRequest request);
+    SendOtpResponse send(@RequestBody SendOtpRequest request);
+
+    @PostMapping("/otp/verify")
+    void verify(@RequestBody VerifyOtpRequest request);
 
     class FeignConfiguration {
         @Bean
