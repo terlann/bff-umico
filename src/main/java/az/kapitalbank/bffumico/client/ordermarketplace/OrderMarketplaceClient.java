@@ -39,10 +39,10 @@ public interface OrderMarketplaceClient {
     PurchaseResponse reverseOrder(@RequestBody ReverseRequest request);
 
     @PostMapping("/otp/send")
-    SendOtpResponse send(SendOtpRequest request);
+    SendOtpResponse send(@RequestBody SendOtpRequest request);
 
     @PostMapping("/otp/verify")
-    void verify(OtpVerifyRequest request);
+    void verify(@RequestBody OtpVerifyRequest request);
 
     class FeignConfiguration {
         @Bean
