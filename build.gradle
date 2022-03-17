@@ -92,8 +92,7 @@ sonarqube {
                         "**/az/kapitalbank/bffumico/controller/**," +
                         "**/az/kapitalbank/bffumico/dto/**," +
                         "**/az/kapitalbank/bffumico/exception/**," +
-                        "**/az/kapitalbank/bffumico/mapper/**," +
-                        "**/az/kapitalbank/bffumico/service/**"
+                        "**/az/kapitalbank/bffumico/mapper/**"
     }
 }
 

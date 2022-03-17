@@ -1,7 +1,5 @@
 package az.kapitalbank.bffumico.service;
 
-import java.util.List;
-
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
@@ -13,6 +11,7 @@ import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -33,7 +32,6 @@ public class OrderService {
         var createOrderRequest = orderMapper.toCreateOrderRequest(request);
         var createOrderResponse = orderMarketplaceClient.createOrder(createOrderRequest);
         return orderMapper.toCreateOrderResponseDto(createOrderResponse);
-
     }
 
     public CheckOrderResponseDto checkOrder(String telesalesOrderId) {
