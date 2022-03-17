@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class SendOtpRequestDto {
+public class OtpVerifyRequestDto {
     private UUID trackId;
+    private String otp;
 }
