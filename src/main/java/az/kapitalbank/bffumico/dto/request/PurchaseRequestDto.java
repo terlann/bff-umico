@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.dto.request;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.model.DeliveryProduct;
+import az.kapitalbank.bffumico.dto.DeliveryProductDto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.List;
@@ -19,10 +19,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PurchaseRequestDto {
-
     String umicoUserId;
     UUID trackId;
     UUID customerId;
-    List<DeliveryProduct> deliveryOrders;
+    List<DeliveryProductDto> deliveryOrders;
 
 }
