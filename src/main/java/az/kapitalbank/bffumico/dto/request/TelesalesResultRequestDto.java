@@ -3,6 +3,7 @@ package az.kapitalbank.bffumico.dto.request;
 import az.kapitalbank.bffumico.constant.ScoringStatus;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,4 +25,5 @@ public class TelesalesResultRequestDto {
     LocalDate loanContractEndDate;
     String uid;
     String pan;
+    BigDecimal scoredAmount;
 }

@@ -1,6 +1,7 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
 import az.kapitalbank.bffumico.constant.ScoringStatus;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,4 +22,5 @@ public class TelesalesResultRequest {
     LocalDate loanContractEndDate;
     String uid;
     String pan;
+    BigDecimal scoredAmount;
 }
