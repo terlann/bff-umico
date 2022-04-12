@@ -21,7 +21,6 @@ import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -91,15 +90,11 @@ class OrderServiceTest {
     void purchase_Success() {
         var purchaseRequestDto = PurchaseRequestDto.builder().build();
         var purchaseRequest = PurchaseRequest.builder().build();
-        var purchaseResponses = List.of(PurchaseResponse.builder().build());
-        var expected = List.of(PurchaseResponseDto.builder().build());
 
         when(orderMapper.toPurchaseRequest(purchaseRequestDto)).thenReturn(purchaseRequest);
-        when(orderMarketplaceClient.purchase(purchaseRequest)).thenReturn(purchaseResponses);
-        when(orderMapper.toPurchaseResponseDtoList(purchaseResponses)).thenReturn(expected);
 
-        var actual = orderService.purchase(purchaseRequestDto);
-        assertEquals(expected, actual);
+        orderService.purchase(purchaseRequestDto);
+        verify(orderMapper).toPurchaseRequest(purchaseRequestDto);
     }
 
     @Test

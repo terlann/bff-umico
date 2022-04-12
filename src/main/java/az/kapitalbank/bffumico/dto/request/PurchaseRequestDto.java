@@ -22,6 +22,6 @@ public class PurchaseRequestDto {
     String umicoUserId;
     UUID trackId;
     UUID customerId;
-    List<DeliveryProductDto> deliveryOrders;
-
+    String orderNo;
+    List<DeliveryProductDto> deliveryProducts;
 }

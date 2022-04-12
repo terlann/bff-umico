@@ -11,7 +11,6 @@ import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -45,10 +44,9 @@ public class OrderService {
         return orderMapper.toPurchaseResponseDto(purchaseResponse);
     }
 
-    public List<PurchaseResponseDto> purchase(PurchaseRequestDto request) {
+    public void purchase(PurchaseRequestDto request) {
         var purchaseRequest = orderMapper.toPurchaseRequest(request);
-        var purchaseResponses = orderMarketplaceClient.purchase(purchaseRequest);
-        return orderMapper.toPurchaseResponseDtoList(purchaseResponses);
+        orderMarketplaceClient.purchase(purchaseRequest);
     }
 
     public void telesalesResult(TelesalesResultRequestDto request) {

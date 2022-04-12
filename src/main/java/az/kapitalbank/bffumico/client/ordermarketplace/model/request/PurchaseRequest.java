@@ -19,5 +19,6 @@ public class PurchaseRequest {
     String umicoUserId;
     UUID trackId;
     UUID customerId;
-    List<DeliveryProduct> deliveryOrders;
+    String orderNo;
+    List<DeliveryProduct> deliveryProducts;
 }

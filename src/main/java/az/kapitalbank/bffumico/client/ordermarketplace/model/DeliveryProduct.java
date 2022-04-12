@@ -1,6 +1,5 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model;
 
-import java.math.BigDecimal;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,8 +13,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DeliveryProduct {
-    String orderNo;
     String productId;
     String itemType;
-    BigDecimal orderAmount;
 }
