@@ -9,7 +9,6 @@ import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -52,9 +51,10 @@ public class OrderController {
 
     @PostMapping("/purchase")
     @ApiOperation("Order Delivery")
-    public ResponseEntity<List<PurchaseResponseDto>> purchase(
+    public ResponseEntity<Void> purchase(
             @RequestBody PurchaseRequestDto request) {
-        return ResponseEntity.ok(service.purchase(request));
+        service.purchase(request);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/telesales/result")

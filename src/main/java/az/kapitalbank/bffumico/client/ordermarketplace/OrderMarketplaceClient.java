@@ -11,7 +11,6 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrde
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.SendOtpResponse;
 import feign.Logger;
-import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +32,7 @@ public interface OrderMarketplaceClient {
     void telesalesResult(@RequestBody TelesalesResultRequest request);
 
     @PostMapping("/orders/purchase")
-    List<PurchaseResponse> purchase(@RequestBody PurchaseRequest request);
+    void purchase(@RequestBody PurchaseRequest request);
 
     @PostMapping("/orders/reverse")
     PurchaseResponse reverseOrder(@RequestBody ReverseRequest request);
