@@ -2,7 +2,7 @@ package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.RefundRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.VerifyOtpRequest;
@@ -34,8 +34,8 @@ public interface OrderMarketplaceClient {
     @PostMapping("/orders/purchase")
     void purchase(@RequestBody PurchaseRequest request);
 
-    @PostMapping("/orders/reverse")
-    PurchaseResponse reverseOrder(@RequestBody ReverseRequest request);
+    @PostMapping("/orders/refund")
+    PurchaseResponse refundOrder(@RequestBody RefundRequest request);
 
     @PostMapping("/otp/send")
     SendOtpResponse send(@RequestBody SendOtpRequest request);
