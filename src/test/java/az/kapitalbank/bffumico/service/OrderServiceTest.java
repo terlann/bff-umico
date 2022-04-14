@@ -7,14 +7,14 @@ import static org.mockito.Mockito.when;
 import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ReverseRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.RefundRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
-import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
+import az.kapitalbank.bffumico.dto.request.RefundRequestDto;
 import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
@@ -71,19 +71,18 @@ class OrderServiceTest {
         assertEquals(expected, actual);
     }
 
-
     @Test
-    void reverseOrder_Success() {
-        var reverseRequestDto = ReverseRequestDto.builder().build();
-        var reverseRequest = ReverseRequest.builder().build();
+    void refundOrder_Success() {
+        var refundRequestDto = RefundRequestDto.builder().build();
+        var refundRequest = RefundRequest.builder().build();
         var purchaseResponse = PurchaseResponse.builder().build();
         var expected = PurchaseResponseDto.builder().build();
-        when(orderMapper.toReverseRequest(reverseRequestDto)).thenReturn(reverseRequest);
-        when(orderMarketplaceClient.reverseOrder(reverseRequest)).thenReturn(purchaseResponse);
-        when(orderMapper.toPurchaseResponseDto(purchaseResponse)).thenReturn(expected);
 
-        var actual = orderService.reverseOrder(reverseRequestDto);
-        assertEquals(expected, actual);
+        when(orderMapper.toRefundRequest(refundRequestDto)).thenReturn(refundRequest);
+        when(orderMarketplaceClient.refundOrder(refundRequest)).thenReturn(purchaseResponse);
+
+        orderService.refund(refundRequestDto);
+        verify(orderMapper).toRefundRequest(refundRequestDto);
     }
 
     @Test
