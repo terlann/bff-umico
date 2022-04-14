@@ -4,11 +4,10 @@ import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
-import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
+import az.kapitalbank.bffumico.dto.request.RefundRequestDto;
 import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
-import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.mapper.OrderMapper;
 import az.kapitalbank.bffumico.mapper.ScoringMapper;
 import lombok.AccessLevel;
@@ -38,10 +37,9 @@ public class OrderService {
         return orderMapper.toCheckOrderResponseDto(checkOrderResponse);
     }
 
-    public PurchaseResponseDto reverseOrder(ReverseRequestDto request) {
-        var reverseRequest = orderMapper.toReverseRequest(request);
-        var purchaseResponse = orderMarketplaceClient.reverseOrder(reverseRequest);
-        return orderMapper.toPurchaseResponseDto(purchaseResponse);
+    public void refund(RefundRequestDto request) {
+        var refundRequest = orderMapper.toRefundRequest(request);
+        orderMarketplaceClient.refundOrder(refundRequest);
     }
 
     public void purchase(PurchaseRequestDto request) {
