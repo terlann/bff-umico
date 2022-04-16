@@ -31,7 +31,7 @@ public class OrderController {
     @ApiOperation("All Transaction")
     public ResponseEntity<CreateOrderResponseDto> createOrder(
             @RequestBody CreateOrderRequestDto request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createOrder(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @PostMapping("/refund")
@@ -45,7 +45,7 @@ public class OrderController {
     @ApiOperation(value = "Telesales order check")
     public ResponseEntity<CheckOrderResponseDto> checkOrder(
             @PathVariable("telesales-order-id") String telesalesOrderId) {
-        return ResponseEntity.ok(service.checkOrder(telesalesOrderId));
+        return ResponseEntity.ok(service.check(telesalesOrderId));
     }
 
     @PostMapping("/purchase")

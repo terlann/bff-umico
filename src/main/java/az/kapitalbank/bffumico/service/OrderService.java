@@ -1,7 +1,6 @@
 package az.kapitalbank.bffumico.service;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
-import az.kapitalbank.bffumico.client.ordermarketplace.model.request.TelesalesResultRequest;
+import az.kapitalbank.bffumico.client.ordermarketplace.MarketplaceClient;
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
 import az.kapitalbank.bffumico.dto.request.RefundRequestDto;
@@ -16,39 +15,46 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Slf4j
 public class OrderService {
 
     OrderMapper orderMapper;
     ScoringMapper scoringMapper;
-    OrderMarketplaceClient orderMarketplaceClient;
+    MarketplaceClient marketplaceClient;
 
-    public CreateOrderResponseDto createOrder(CreateOrderRequestDto request) {
-        var createOrderRequest = orderMapper.toCreateOrderRequest(request);
-        var createOrderResponse = orderMarketplaceClient.createOrder(createOrderRequest);
-        return orderMapper.toCreateOrderResponseDto(createOrderResponse);
+    public CreateOrderResponseDto create(CreateOrderRequestDto request) {
+        log.info("create order service started. request: {}", request);
+        var response =
+                marketplaceClient.create(orderMapper.toCreateOrderRequest(request));
+        log.info("create order service ended. response: {}", request);
+        return orderMapper.toCreateOrderResponseDto(response);
     }
 
-    public CheckOrderResponseDto checkOrder(String telesalesOrderId) {
-        var checkOrderResponse = orderMarketplaceClient.checkOrder(telesalesOrderId);
-        return orderMapper.toCheckOrderResponseDto(checkOrderResponse);
+    public CheckOrderResponseDto check(String telesalesOrderId) {
+        log.info("check order service started. telesalesOrderId: {}", telesalesOrderId);
+        var response = marketplaceClient.check(telesalesOrderId);
+        log.info("check order service ended. response: {}", response);
+        return orderMapper.toCheckOrderResponseDto(response);
     }
 
     public void refund(RefundRequestDto request) {
-        var refundRequest = orderMapper.toRefundRequest(request);
-        orderMarketplaceClient.refundOrder(refundRequest);
+        log.info("refund service started. request: {}", request);
+        marketplaceClient.refundOrder(orderMapper.toRefundRequest(request));
+        log.info("refund service ended. request: {}", request);
     }
 
     public void purchase(PurchaseRequestDto request) {
-        var purchaseRequest = orderMapper.toPurchaseRequest(request);
-        orderMarketplaceClient.purchase(purchaseRequest);
+        log.info("purchase service started. request: {}", request);
+        marketplaceClient.purchase(orderMapper.toPurchaseRequest(request));
+        log.info("purchase service ended. request: {}", request);
     }
 
     public void telesalesResult(TelesalesResultRequestDto request) {
-        TelesalesResultRequest orderRequest = scoringMapper.toScoringOrderRequest(request);
-        orderMarketplaceClient.telesalesResult(orderRequest);
+        log.info("telesales result service started. request: {}", request);
+        marketplaceClient.telesalesResult(scoringMapper.toScoringOrderRequest(request));
+        log.info("telesales result service ended. request: {}", request);
     }
 }

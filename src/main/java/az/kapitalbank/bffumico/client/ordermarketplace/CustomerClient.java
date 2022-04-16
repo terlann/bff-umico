@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "marketplace",
         url = "${client.marketplace.url}/api/v1",
         primary = false)
-public interface CustomerCardClient {
+public interface CustomerClient {
 
     @GetMapping("/customers/balance")
     BalanceResponse getCustomerBalance(@RequestParam String umicoUserId,

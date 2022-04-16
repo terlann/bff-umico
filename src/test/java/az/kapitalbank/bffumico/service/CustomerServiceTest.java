@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.CustomerCardClient;
+import az.kapitalbank.bffumico.client.ordermarketplace.CustomerClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.BalanceResponse;
 import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
 import az.kapitalbank.bffumico.mapper.CustomerMapper;
@@ -21,7 +21,7 @@ class CustomerServiceTest {
     @Mock
     CustomerMapper customerMapper;
     @Mock
-    CustomerCardClient customerCardClient;
+    CustomerClient customerClient;
     @InjectMocks
     CustomerService customerService;
 
@@ -31,7 +31,7 @@ class CustomerServiceTest {
         var customerId = UUID.randomUUID();
         var balanceResponse = BalanceResponse.builder().build();
         var expected = BalanceResponseDto.builder().build();
-        when(customerCardClient.getCustomerBalance(umicoUserId, customerId)).thenReturn(
+        when(customerClient.getCustomerBalance(umicoUserId, customerId)).thenReturn(
                 balanceResponse);
         when(customerMapper.toBalanceResponseDto(balanceResponse)).thenReturn(expected);
 
@@ -43,6 +43,6 @@ class CustomerServiceTest {
     void checkPin_Success() {
         String pin = "AA1BB2";
         customerService.checkPin(pin);
-        verify(customerCardClient).checkPin(pin);
+        verify(customerClient).checkPin(pin);
     }
 }

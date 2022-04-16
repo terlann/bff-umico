@@ -3,7 +3,7 @@ package az.kapitalbank.bffumico.service;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
+import az.kapitalbank.bffumico.client.ordermarketplace.MarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.VerifyOtpRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.SendOtpResponse;
@@ -22,7 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class OtpServiceTest {
 
     @Mock
-    OrderMarketplaceClient orderMarketplaceClient;
+    MarketplaceClient marketplaceClient;
 
     @Mock
     OtpMapper otpMapper;
@@ -46,14 +46,14 @@ class OtpServiceTest {
                 .build();
 
         when(otpMapper.toSendOtpRequest(sendOtpRequestDto)).thenReturn(sendOtpRequest);
-        when(orderMarketplaceClient.send(sendOtpRequest)).thenReturn(sendOtpResponse);
+        when(marketplaceClient.send(sendOtpRequest)).thenReturn(sendOtpResponse);
         when(otpMapper.toSendOtpResponseDto(sendOtpResponse)).thenReturn(sendOtpResponseDto);
 
         otpService.send(sendOtpRequestDto);
 
         verify(otpMapper).toSendOtpRequest(sendOtpRequestDto);
         verify(otpMapper).toSendOtpResponseDto(sendOtpResponse);
-        verify(orderMarketplaceClient).send(sendOtpRequest);
+        verify(marketplaceClient).send(sendOtpRequest);
     }
 
     @Test
@@ -68,6 +68,6 @@ class OtpServiceTest {
         otpService.verify(otpVerifyRequestDto);
 
         verify(otpMapper).toOtpVerifyRequest(otpVerifyRequestDto);
-        verify(orderMarketplaceClient).verify(otpVerifyRequest);
+        verify(marketplaceClient).verify(otpVerifyRequest);
     }
 }
