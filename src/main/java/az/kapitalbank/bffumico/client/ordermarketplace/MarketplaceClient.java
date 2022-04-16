@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "ms-marketplace",
         url = "${client.marketplace.url}/api/v1",
         primary = false)
-public interface OrderMarketplaceClient {
+public interface MarketplaceClient {
 
     @PostMapping("/orders")
-    CreateOrderResponse createOrder(@RequestBody CreateOrderRequest request);
+    CreateOrderResponse create(@RequestBody CreateOrderRequest request);
 
     @PostMapping("/orders/check/{telesales-order-id}")
-    CheckOrderResponse checkOrder(@PathVariable("telesales-order-id") String telesalesOrderId);
+    CheckOrderResponse check(@PathVariable("telesales-order-id") String telesalesOrderId);
 
     @PostMapping("/orders/telesales/result")
     void telesalesResult(@RequestBody TelesalesResultRequest request);

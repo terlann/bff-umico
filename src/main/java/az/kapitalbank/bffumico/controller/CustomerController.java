@@ -28,8 +28,7 @@ public class CustomerController {
     public ResponseEntity<BalanceResponseDto> getCustomerBalance(
             @RequestParam("umico_user_id") String umicoUserId,
             @RequestParam("customer_id") UUID customerId) {
-        var customerBalance = customerService.getCustomerBalance(umicoUserId, customerId);
-        return ResponseEntity.ok(customerBalance);
+        return ResponseEntity.ok(customerService.getCustomerBalance(umicoUserId, customerId));
     }
 
     @GetMapping("check/{pin}")

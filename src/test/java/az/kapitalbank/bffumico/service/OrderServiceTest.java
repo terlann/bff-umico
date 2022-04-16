@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import az.kapitalbank.bffumico.client.ordermarketplace.OrderMarketplaceClient;
+import az.kapitalbank.bffumico.client.ordermarketplace.MarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.RefundRequest;
@@ -35,7 +35,7 @@ class OrderServiceTest {
     @Mock
     ScoringMapper scoringMapper;
     @Mock
-    OrderMarketplaceClient orderMarketplaceClient;
+    MarketplaceClient marketplaceClient;
     @InjectMocks
     OrderService orderService;
 
@@ -49,11 +49,11 @@ class OrderServiceTest {
 
         when(orderMapper.toCreateOrderRequest(createOrderRequestDto)).thenReturn(
                 createOrderRequest);
-        when(orderMarketplaceClient.createOrder(createOrderRequest)).thenReturn(
+        when(marketplaceClient.create(createOrderRequest)).thenReturn(
                 createOrderResponse);
         when(orderMapper.toCreateOrderResponseDto(createOrderResponse)).thenReturn(expected);
 
-        var actual = orderService.createOrder(createOrderRequestDto);
+        var actual = orderService.create(createOrderRequestDto);
         assertEquals(expected, actual);
     }
 
@@ -63,11 +63,11 @@ class OrderServiceTest {
         var checkOrderResponse = CheckOrderResponse.builder().build();
         var expected = CheckOrderResponseDto.builder().build();
 
-        when(orderMarketplaceClient.checkOrder(telesalesOrderId)).thenReturn(checkOrderResponse);
+        when(marketplaceClient.check(telesalesOrderId)).thenReturn(checkOrderResponse);
         when(orderMapper.toCheckOrderResponseDto(checkOrderResponse)).thenReturn(
                 expected);
 
-        var actual = orderService.checkOrder(telesalesOrderId);
+        var actual = orderService.check(telesalesOrderId);
         assertEquals(expected, actual);
     }
 
@@ -79,7 +79,7 @@ class OrderServiceTest {
         var expected = PurchaseResponseDto.builder().build();
 
         when(orderMapper.toRefundRequest(refundRequestDto)).thenReturn(refundRequest);
-        when(orderMarketplaceClient.refundOrder(refundRequest)).thenReturn(purchaseResponse);
+        when(marketplaceClient.refundOrder(refundRequest)).thenReturn(purchaseResponse);
 
         orderService.refund(refundRequestDto);
         verify(orderMapper).toRefundRequest(refundRequestDto);
@@ -105,6 +105,6 @@ class OrderServiceTest {
         orderService.telesalesResult(requestDto);
 
         verify(scoringMapper).toScoringOrderRequest(requestDto);
-        verify(orderMarketplaceClient).telesalesResult(request);
+        verify(marketplaceClient).telesalesResult(request);
     }
 }

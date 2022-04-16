@@ -4,7 +4,9 @@ import az.kapitalbank.bffumico.dto.request.SendOtpRequestDto;
 import az.kapitalbank.bffumico.dto.request.VerifyOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
 import az.kapitalbank.bffumico.service.OtpService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/otp")
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class OtpController {
 
-    private final OtpService otpService;
+    OtpService otpService;
 
     @PostMapping("/send")
     public ResponseEntity<SendOtpResponseDto> send(@RequestBody SendOtpRequestDto requestDto) {
