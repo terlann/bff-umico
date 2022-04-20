@@ -29,7 +29,7 @@ public class OrderService {
         log.info("create order service started. request: {}", request);
         var response =
                 marketplaceClient.create(orderMapper.toCreateOrderRequest(request));
-        log.info("create order service ended. response: {}", request);
+        log.info("create order service ended. response: {}", response);
         return orderMapper.toCreateOrderResponseDto(response);
     }
 
@@ -43,18 +43,18 @@ public class OrderService {
     public void refund(RefundRequestDto request) {
         log.info("refund service started. request: {}", request);
         marketplaceClient.refundOrder(orderMapper.toRefundRequest(request));
-        log.info("refund service ended. request: {}", request);
+        log.info("refund service ended...");
     }
 
     public void purchase(PurchaseRequestDto request) {
         log.info("purchase service started. request: {}", request);
         marketplaceClient.purchase(orderMapper.toPurchaseRequest(request));
-        log.info("purchase service ended. request: {}", request);
+        log.info("purchase service ended...");
     }
 
     public void telesalesResult(TelesalesResultRequestDto request) {
         log.info("telesales result service started. request: {}", request);
         marketplaceClient.telesalesResult(scoringMapper.toScoringOrderRequest(request));
-        log.info("telesales result service ended. request: {}", request);
+        log.info("telesales result service ended...");
     }
 }
