@@ -30,6 +30,6 @@ public class OtpService {
     public void verify(VerifyOtpRequestDto request) {
         log.info("verify otp service started. request: {}", request);
         marketplaceClient.verify(otpMapper.toOtpVerifyRequest(request));
-        log.info("verify otp service ended. request: {}", request);
+        log.info("verify otp service ended...");
     }
 }
