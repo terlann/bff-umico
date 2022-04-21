@@ -2,11 +2,10 @@ package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.CreateOrderRequestDto;
 import az.kapitalbank.bffumico.dto.request.PurchaseRequestDto;
-import az.kapitalbank.bffumico.dto.request.ReverseRequestDto;
+import az.kapitalbank.bffumico.dto.request.RefundRequestDto;
 import az.kapitalbank.bffumico.dto.request.TelesalesResultRequestDto;
 import az.kapitalbank.bffumico.dto.response.CheckOrderResponseDto;
 import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
-import az.kapitalbank.bffumico.dto.response.PurchaseResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
@@ -32,21 +31,21 @@ public class OrderController {
     @ApiOperation("All Transaction")
     public ResponseEntity<CreateOrderResponseDto> createOrder(
             @RequestBody CreateOrderRequestDto request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createOrder(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
-    @PostMapping("/reverse")
-    @ApiOperation("Order Cancellation (UNBLOCK) Reverse Amount")
-    public ResponseEntity<PurchaseResponseDto> reverseOrder(
-            @RequestBody ReverseRequestDto request) {
-        return ResponseEntity.ok(service.reverseOrder(request));
+    @PostMapping("/refund")
+    @ApiOperation("Order Cancellation (UNBLOCK) Refund Amount")
+    public ResponseEntity<Void> refund(@RequestBody RefundRequestDto request) {
+        service.refund(request);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/check/{telesales-order-id}")
     @ApiOperation(value = "Telesales order check")
     public ResponseEntity<CheckOrderResponseDto> checkOrder(
             @PathVariable("telesales-order-id") String telesalesOrderId) {
-        return ResponseEntity.ok(service.checkOrder(telesalesOrderId));
+        return ResponseEntity.ok(service.check(telesalesOrderId));
     }
 
     @PostMapping("/purchase")

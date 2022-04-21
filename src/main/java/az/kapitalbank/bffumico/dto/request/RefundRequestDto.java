@@ -1,6 +1,7 @@
-package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
+package az.kapitalbank.bffumico.dto.request;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,9 +15,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ReverseRequest {
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class RefundRequestDto {
     String umicoUserId;
     UUID customerId;
     String orderNo;
-    BigDecimal orderAmount;
 }
