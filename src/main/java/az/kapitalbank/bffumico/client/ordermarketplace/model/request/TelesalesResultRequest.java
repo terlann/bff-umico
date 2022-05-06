@@ -23,4 +23,5 @@ public class TelesalesResultRequest {
     String uid;
     String pan;
     BigDecimal scoredAmount;
+    Long rejectReasonCode;
 }
