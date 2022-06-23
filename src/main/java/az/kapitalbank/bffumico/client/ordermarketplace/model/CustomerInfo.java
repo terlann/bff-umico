@@ -31,4 +31,5 @@ public class CustomerInfo {
     String longitude;
     String ip;
     String userAgent;
+    String deviceTokenId;
 }

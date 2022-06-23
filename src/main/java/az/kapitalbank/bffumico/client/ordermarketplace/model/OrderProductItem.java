@@ -20,4 +20,5 @@ public class OrderProductItem {
     String orderNo;
     String itemType;
     String partnerCmsId;
+    Integer categoryId;
 }
