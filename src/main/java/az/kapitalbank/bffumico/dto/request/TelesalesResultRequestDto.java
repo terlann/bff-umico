@@ -27,4 +27,6 @@ public class TelesalesResultRequestDto {
     String pan;
     BigDecimal scoredAmount;
     Long rejectReasonCode;
+    String cif;
+    String contractNumber;
 }
