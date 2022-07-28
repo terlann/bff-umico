@@ -24,4 +24,5 @@ public class OrderProductItemDto {
     String itemType;
     String partnerCmsId;
     Integer categoryId;
+    String brand;
 }
