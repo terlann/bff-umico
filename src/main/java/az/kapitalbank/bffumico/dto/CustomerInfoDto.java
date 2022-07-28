@@ -35,4 +35,6 @@ public class CustomerInfoDto {
     String ip;
     String userAgent;
     String deviceTokenId;
+    Integer bbUserId;
+    String bbDeviceId;
 }
