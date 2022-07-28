@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.time.LocalDate;
@@ -35,6 +36,8 @@ public class CustomerInfoDto {
     String ip;
     String userAgent;
     String deviceTokenId;
-    Integer bbUserId;
-    String bbDeviceId;
+    @JsonProperty("bb_user_id")
+    Integer birbankUserId;
+    @JsonProperty("bb_device_id")
+    String birbankDeviceId;
 }

@@ -32,4 +32,6 @@ public class CustomerInfo {
     String ip;
     String userAgent;
     String deviceTokenId;
+    Integer birbankUserId;
+    String birbankDeviceId;
 }
