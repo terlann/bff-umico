@@ -44,7 +44,7 @@ public interface MarketplaceClient {
     @PostMapping("/otp/verify")
     void verify(@RequestBody VerifyOtpRequest request);
 
-    @PostMapping("/dvs/status")
+    @PostMapping("/dvs/result")
     void verificationResult(@RequestBody DvsResult request);
 
     class FeignConfiguration {
