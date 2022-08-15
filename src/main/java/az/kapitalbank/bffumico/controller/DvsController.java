@@ -20,7 +20,7 @@ public class DvsController {
 
     DvsService dvsService;
 
-    @PostMapping("/status")
+    @PostMapping("/result")
     public ResponseEntity<Void> verificationResult(@RequestBody DvsResultDto request) {
         dvsService.verificationResultProcess(request);
         return ResponseEntity.ok().build();
