@@ -48,7 +48,7 @@ public interface MarketplaceClient {
     @PostMapping("/dvs/result")
     void verificationResult(@RequestBody DvsResult request);
 
-    @PostMapping("/imei/save")
+    @PostMapping("/imei")
     void saveImeiCode(@RequestBody ImeiCodeRequest imeiCodeRequest);
 
     class FeignConfiguration {
