@@ -2,6 +2,7 @@ package az.kapitalbank.bffumico.client.ordermarketplace;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.CreateOrderRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.DvsResult;
+import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ImeiCodeRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.PurchaseRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.RefundRequest;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
@@ -46,6 +47,9 @@ public interface MarketplaceClient {
 
     @PostMapping("/dvs/result")
     void verificationResult(@RequestBody DvsResult request);
+
+    @PostMapping("/imei/save")
+    void saveImeiCode(@RequestBody ImeiCodeRequest imeiCodeRequest);
 
     class FeignConfiguration {
         @Bean
