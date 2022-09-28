@@ -19,7 +19,7 @@ public class ImeiService {
     ImeiMapper imeiMapper;
 
     public void saveImei(ImeiCodeRequestDto imeiCodeRequestDto) {
-        log.info("Save imei code started. orderNo - {}", imeiCodeRequestDto.getOrderNo());
+        log.info("Save imei code process was started. imeiCodeRequestDto - {}", imeiCodeRequestDto);
         marketplaceClient.saveImeiCode(imeiMapper.toImeiCodeRequest(imeiCodeRequestDto));
     }
 }
