@@ -1,6 +1,6 @@
 package az.kapitalbank.bffumico.client.ordermarketplace.model.request;
 
-import java.util.Set;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,5 +16,5 @@ import lombok.experimental.FieldDefaults;
 public class ImeiCodeRequest {
     String orderNo;
 
-    Set<String> imeiCodes;
+    List<String> imeiCodes;
 }

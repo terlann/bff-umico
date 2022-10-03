@@ -2,7 +2,6 @@ package az.kapitalbank.bffumico.controller;
 
 import az.kapitalbank.bffumico.dto.request.ImeiCodeRequestDto;
 import az.kapitalbank.bffumico.service.ImeiService;
-import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +22,7 @@ public class ImeiController {
 
     @PostMapping
     public ResponseEntity<Void> saveImeiCode(
-            @Valid @RequestBody ImeiCodeRequestDto imeiCodeRequestDto) {
+            @RequestBody ImeiCodeRequestDto imeiCodeRequestDto) {
         imeiService.saveImei(imeiCodeRequestDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
