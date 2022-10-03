@@ -2,7 +2,7 @@ package az.kapitalbank.bffumico.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.util.Set;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,5 +19,5 @@ import lombok.experimental.FieldDefaults;
 public class ImeiCodeRequestDto {
     String orderNo;
 
-    Set<String> imeiCodes;
+    List<String> imeiCodes;
 }

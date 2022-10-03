@@ -7,6 +7,7 @@ import az.kapitalbank.bffumico.client.ordermarketplace.MarketplaceClient;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.ImeiCodeRequest;
 import az.kapitalbank.bffumico.dto.request.ImeiCodeRequestDto;
 import az.kapitalbank.bffumico.mapper.ImeiMapper;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +32,7 @@ class ImeiServiceTest {
                 .orderNo("3123456789")
                 .build();
         var imeiCodeRequestDto = ImeiCodeRequestDto.builder()
-                .imeiCodes(Set.of("TT11"))
+                .imeiCodes(List.of("TT11"))
                 .orderNo("3123456789")
                 .build();
 
