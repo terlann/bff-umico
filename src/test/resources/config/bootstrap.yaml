@@ -3,4 +3,3 @@ spring:
     consul:
       config:
         enabled: false
-      enabled: false
