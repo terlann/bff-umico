@@ -1,5 +1,6 @@
 package az.kapitalbank.bffumico.controller;
 
+import static az.kapitalbank.bffumico.constants.TestConstants.TELESALES_ORDER_ID;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,10 +58,10 @@ class OrderControllerTest {
 
     @Test
     void checkOrder() throws Exception {
-        mockMvc.perform(post("/api/v1/orders/check/123456"))
+        mockMvc.perform(post("/api/v1/orders/check/" + TELESALES_ORDER_ID.getValue()))
                 .andExpect(status().isOk());
 
-        verify(orderService).check("123456");
+        verify(orderService).check(TELESALES_ORDER_ID.getValue());
     }
 
     @Test
