@@ -77,7 +77,7 @@ class OrderControllerTest {
         when(orderService.check(TELESALES_ORDER_ID.getValue())).thenReturn(response);
 
         mockMvc.perform(post("/api/v1/orders/check/" + TELESALES_ORDER_ID.getValue()))
-                .andExpect(jsonPath("$.telesales_order", is(response.getTrackId().toString())))
+                .andExpect(jsonPath("$.telesalesOrderId", is(response.getTelesalesOrderId())))
                 .andExpect(status().isOk());
 
         verify(orderService).check(TELESALES_ORDER_ID.getValue());
