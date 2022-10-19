@@ -90,8 +90,6 @@ sonarqube {
         property "sonar.coverage.exclusions",
                 "**/az/kapitalbank/bffumico/client/**," +
                         "**/az/kapitalbank/bffumico/config/**," +
-                        "**/az/kapitalbank/bffumico/constant/**," +
-                        "**/az/kapitalbank/bffumico/dto/**," +
                         "**/az/kapitalbank/bffumico/exception/**"
     }
 }
