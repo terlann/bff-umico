@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import az.kapitalbank.bffumico.dto.request.ImeiCodeRequestDto;
 import az.kapitalbank.bffumico.service.ImeiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,22 +19,25 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles("local")
 @WebMvcTest(ImeiController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class ImeiControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @MockBean
     ImeiService imeiService;
 
+    static final String BASE_URL = "/api/v1/imei";
+
     @Test
-    void saveImeiCode() throws Exception {
+    void saveImeiCode_ShouldReturnStatusNoContent() throws Exception {
         var request = ImeiCodeRequestDto.builder().build();
 
-        mockMvc.perform(post("/api/v1/imei")
+        mockMvc.perform(post(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNoContent());

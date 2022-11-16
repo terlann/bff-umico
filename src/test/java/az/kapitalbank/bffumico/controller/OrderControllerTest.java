@@ -18,6 +18,8 @@ import az.kapitalbank.bffumico.dto.response.CreateOrderResponseDto;
 import az.kapitalbank.bffumico.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,19 +30,22 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles("local")
 @WebMvcTest(OrderController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class OrderControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @MockBean
-    private OrderService orderService;
+    OrderService orderService;
+
+    public static final String BASE_URL = "/api/v1/orders";
 
     @Test
-    void createOrder() throws Exception {
+    void createOrder_ShouldReturnStatusCreated() throws Exception {
         var request = CreateOrderRequestDto.builder().build();
         var response = CreateOrderResponseDto.builder()
                 .trackId(UUID.fromString(TRACK_ID.getValue()))
@@ -48,7 +53,7 @@ class OrderControllerTest {
 
         when(orderService.create(request)).thenReturn(response);
 
-        mockMvc.perform(post("/api/v1/orders")
+        mockMvc.perform(post(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(jsonPath("$.track_id", is(response.getTrackId().toString())))
@@ -58,10 +63,10 @@ class OrderControllerTest {
     }
 
     @Test
-    void refund() throws Exception {
+    void refund_ShouldReturnStatusNoContent() throws Exception {
         var request = RefundRequestDto.builder().build();
 
-        mockMvc.perform(post("/api/v1/orders/refund")
+        mockMvc.perform(post(BASE_URL + "/refund")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNoContent());
@@ -70,13 +75,13 @@ class OrderControllerTest {
     }
 
     @Test
-    void checkOrder() throws Exception {
+    void checkOrder_ShouldReturnStatusOk() throws Exception {
         var response = CheckOrderResponseDto.builder()
                 .telesalesOrderId(TELESALES_ORDER_ID.getValue()).build();
 
         when(orderService.check(TELESALES_ORDER_ID.getValue())).thenReturn(response);
 
-        mockMvc.perform(post("/api/v1/orders/check/" + TELESALES_ORDER_ID.getValue()))
+        mockMvc.perform(post(BASE_URL + "/check/" + TELESALES_ORDER_ID.getValue()))
                 .andExpect(jsonPath("$.telesalesOrderId", is(response.getTelesalesOrderId())))
                 .andExpect(status().isOk());
 
@@ -84,10 +89,10 @@ class OrderControllerTest {
     }
 
     @Test
-    void purchase() throws Exception {
+    void purchase_ShouldReturnStatusNoContent() throws Exception {
         var request = PurchaseRequestDto.builder().build();
 
-        mockMvc.perform(post("/api/v1/orders/purchase")
+        mockMvc.perform(post(BASE_URL + "/purchase")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNoContent());
@@ -96,10 +101,10 @@ class OrderControllerTest {
     }
 
     @Test
-    void telesalesResult() throws Exception {
+    void telesalesResult_ShouldReturnStatusNoContent() throws Exception {
         var request = TelesalesResultRequestDto.builder().build();
 
-        mockMvc.perform(post("/api/v1/orders/telesales/result")
+        mockMvc.perform(post(BASE_URL + "/telesales/result")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNoContent());

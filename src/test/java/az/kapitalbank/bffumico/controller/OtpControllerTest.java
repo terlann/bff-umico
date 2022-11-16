@@ -12,6 +12,8 @@ import az.kapitalbank.bffumico.dto.request.VerifyOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
 import az.kapitalbank.bffumico.service.OtpService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,26 +24,29 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles("local")
 @WebMvcTest(OtpController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class OtpControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @MockBean
     OtpService otpService;
 
+    static final String BASE_URL = "/api/v1/otp";
+
     @Test
-    void send() throws Exception {
+    void send_ShouldReturnStatusOk() throws Exception {
         var request = SendOtpRequestDto.builder().build();
         var response = SendOtpResponseDto.builder()
                 .maskedMobileNumber(MOBILE_NUMBER.getValue()).build();
 
         when(otpService.send(request)).thenReturn(response);
 
-        mockMvc.perform(post("/api/v1/otp/send")
+        mockMvc.perform(post(BASE_URL + "/send")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(jsonPath("$.masked_mobile_number")
@@ -52,10 +57,10 @@ class OtpControllerTest {
     }
 
     @Test
-    void verify_success() throws Exception {
+    void verify_ShouldReturnStatusNoContent() throws Exception {
         var request = VerifyOtpRequestDto.builder().build();
 
-        mockMvc.perform(post("/api/v1/otp/verify")
+        mockMvc.perform(post(BASE_URL + "/verify")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isNoContent());

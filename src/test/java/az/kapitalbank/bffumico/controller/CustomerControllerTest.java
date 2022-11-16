@@ -11,9 +11,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import az.kapitalbank.bffumico.dto.response.BalanceResponseDto;
 import az.kapitalbank.bffumico.service.CustomerService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.util.UUID;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,25 +24,25 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles("local")
 @WebMvcTest(CustomerController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class CustomerControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
+    MockMvc mockMvc;
 
     @MockBean
     CustomerService customerService;
 
+    static final String BASE_URL = "/api/v1/customers";
+
     @Test
-    void getCustomerBalance() throws Exception {
+    void getCustomerBalance_ShouldReturnStatusOk() throws Exception {
         var response = BalanceResponseDto.builder().availableBalance(BigDecimal.ONE).build();
 
         when(customerService.getCustomerBalance(UMICO_USER_ID.getValue(),
                 UUID.fromString(CUSTOMER_ID.getValue()))).thenReturn(response);
 
-        mockMvc.perform(get("/api/v1/customers/balance")
+        mockMvc.perform(get(BASE_URL + "/balance")
                         .param("umico_user_id", UMICO_USER_ID.getValue())
                         .param("customer_id", CUSTOMER_ID.getValue()))
                 .andExpect(jsonPath("$.available_balance").value(response.getAvailableBalance()))
@@ -52,8 +53,8 @@ class CustomerControllerTest {
     }
 
     @Test
-    void checkPin() throws Exception {
-        mockMvc.perform(get("/api/v1/customers/check/1234567"))
+    void checkPin_ShouldReturnStatusNoContent() throws Exception {
+        mockMvc.perform(get(BASE_URL + "/check/1234567"))
                 .andExpect(status().isNoContent());
 
         verify(customerService).checkPin(PIN.getValue());
