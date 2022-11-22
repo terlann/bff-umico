@@ -1,5 +1,8 @@
 package az.kapitalbank.bffumico.mapper;
 
+import static az.kapitalbank.bffumico.constants.TestConstants.ORDER_NO;
+import static az.kapitalbank.bffumico.constants.TestConstants.TELESALES_ORDER_ID;
+import static az.kapitalbank.bffumico.constants.TestConstants.TRACK_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.CustomerInfo;
@@ -11,6 +14,7 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.request.RefundReque
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CheckOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.CreateOrderResponse;
 import az.kapitalbank.bffumico.client.ordermarketplace.model.response.PurchaseResponse;
+import az.kapitalbank.bffumico.constant.OrderStatus;
 import az.kapitalbank.bffumico.dto.CustomerInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductDeliveryInfoDto;
 import az.kapitalbank.bffumico.dto.OrderProductItemDto;
@@ -48,8 +52,12 @@ class OrderMapperTest {
 
     @Test
     void toCreateOrderResponseDto() {
-        var createOrderResponse = CreateOrderResponse.builder().build();
-        var expected = CreateOrderResponseDto.builder().build();
+        var createOrderResponse = CreateOrderResponse.builder()
+                .trackId(UUID.fromString(TRACK_ID.getValue()))
+                .build();
+        var expected =
+                CreateOrderResponseDto.builder().trackId(UUID.fromString(TRACK_ID.getValue()))
+                        .build();
 
         var actual = orderMapper.toCreateOrderResponseDto(createOrderResponse);
 
@@ -59,8 +67,10 @@ class OrderMapperTest {
 
     @Test
     void toCheckOrderResponseDto() {
-        var checkOrderResponse = CheckOrderResponse.builder().build();
-        var expected = CheckOrderResponseDto.builder().build();
+        var checkOrderResponse = CheckOrderResponse.builder().telesalesOrderId(
+                TELESALES_ORDER_ID.getValue()).build();
+        var expected = CheckOrderResponseDto.builder().telesalesOrderId(
+                TELESALES_ORDER_ID.getValue()).build();
 
         var actual = orderMapper.toCheckOrderResponseDto(checkOrderResponse);
 
@@ -69,8 +79,8 @@ class OrderMapperTest {
 
     @Test
     void toRefundRequest() {
-        var refundRequestDto = RefundRequestDto.builder().build();
-        var expected = RefundRequest.builder().build();
+        var refundRequestDto = RefundRequestDto.builder().orderNo(ORDER_NO.getValue()).build();
+        var expected = RefundRequest.builder().orderNo(ORDER_NO.getValue()).build();
 
         var actual = orderMapper.toRefundRequest(refundRequestDto);
 
@@ -79,8 +89,8 @@ class OrderMapperTest {
 
     @Test
     void toPurchaseRequest() {
-        var purchaseRequestDto = PurchaseRequestDto.builder().build();
-        var expected = PurchaseRequest.builder().build();
+        var purchaseRequestDto = PurchaseRequestDto.builder().orderNo(ORDER_NO.getValue()).build();
+        var expected = PurchaseRequest.builder().orderNo(ORDER_NO.getValue()).build();
 
         var actual = orderMapper.toPurchaseRequest(purchaseRequestDto);
 
@@ -89,8 +99,12 @@ class OrderMapperTest {
 
     @Test
     void toPurchaseResponseDto() {
-        var purchaseResponse = PurchaseResponse.builder().build();
-        var expected = PurchaseResponseDto.builder().build();
+        var purchaseResponse = PurchaseResponse.builder().orderNo(ORDER_NO.getValue())
+                .status(OrderStatus.SUCCESS)
+                .build();
+        var expected = PurchaseResponseDto.builder().orderNo(ORDER_NO.getValue())
+                .status(OrderStatus.SUCCESS)
+                .build();
 
         var actual = orderMapper.toPurchaseResponseDto(purchaseResponse);
 
@@ -99,8 +113,10 @@ class OrderMapperTest {
 
     @Test
     void toPurchaseResponseDtoList() {
-        var purchaseResponse = PurchaseResponse.builder().build();
-        var expected = List.of(PurchaseResponseDto.builder().build());
+        var purchaseResponse = PurchaseResponse.builder().status(OrderStatus.SUCCESS).orderNo(
+                ORDER_NO.getValue()).build();
+        var expected = List.of(PurchaseResponseDto.builder().status(OrderStatus.SUCCESS).orderNo(
+                ORDER_NO.getValue()).build());
 
         var actual = orderMapper.toPurchaseResponseDtoList(List.of(purchaseResponse));
 

@@ -1,5 +1,8 @@
 package az.kapitalbank.bffumico.mapper;
 
+import static az.kapitalbank.bffumico.constants.TestConstants.MOBILE_NUMBER;
+import static az.kapitalbank.bffumico.constants.TestConstants.OTP;
+import static az.kapitalbank.bffumico.constants.TestConstants.TRACK_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import az.kapitalbank.bffumico.client.ordermarketplace.model.request.SendOtpRequest;
@@ -8,6 +11,7 @@ import az.kapitalbank.bffumico.client.ordermarketplace.model.response.SendOtpRes
 import az.kapitalbank.bffumico.dto.request.SendOtpRequestDto;
 import az.kapitalbank.bffumico.dto.request.VerifyOtpRequestDto;
 import az.kapitalbank.bffumico.dto.response.SendOtpResponseDto;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,8 +26,10 @@ class OtpMapperTest {
 
     @Test
     void toSendOtpRequest() {
-        var telesalesResultRequestDto = SendOtpRequestDto.builder().build();
-        var expected = SendOtpRequest.builder().build();
+        var telesalesResultRequestDto =
+                SendOtpRequestDto.builder().trackId(UUID.fromString(TRACK_ID.getValue())).build();
+        var expected =
+                SendOtpRequest.builder().trackId(UUID.fromString(TRACK_ID.getValue())).build();
 
         var actual = otpMapper.toSendOtpRequest(telesalesResultRequestDto);
 
@@ -32,8 +38,10 @@ class OtpMapperTest {
 
     @Test
     void toSendOtpResponseDto() {
-        var sendOtpResponse = SendOtpResponse.builder().build();
-        var expected = SendOtpResponseDto.builder().build();
+        var sendOtpResponse =
+                SendOtpResponse.builder().maskedMobileNumber(MOBILE_NUMBER.getValue()).build();
+        var expected =
+                SendOtpResponseDto.builder().maskedMobileNumber(MOBILE_NUMBER.getValue()).build();
 
         var actual = otpMapper.toSendOtpResponseDto(sendOtpResponse);
 
@@ -42,8 +50,10 @@ class OtpMapperTest {
 
     @Test
     void toOtpVerifyRequest() {
-        var verifyOtpRequestDto = VerifyOtpRequestDto.builder().build();
-        var expected = VerifyOtpRequest.builder().build();
+        var verifyOtpRequestDto = VerifyOtpRequestDto.builder().otp(OTP.getValue())
+                .trackId(UUID.fromString(TRACK_ID.getValue())).build();
+        var expected = VerifyOtpRequest.builder().otp(OTP.getValue())
+                .trackId(UUID.fromString(TRACK_ID.getValue())).build();
 
         var actual = otpMapper.toOtpVerifyRequest(verifyOtpRequestDto);
 
